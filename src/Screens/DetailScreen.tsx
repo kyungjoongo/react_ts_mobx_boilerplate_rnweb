@@ -10,6 +10,7 @@ type Props = {
 
 
 export default function DetailScreen(props: Props) {
+
     return useObserver(() => (
         <IonPage>
             <IonHeader>
@@ -28,15 +29,22 @@ export default function DetailScreen(props: Props) {
                 </View>
                 <View style={{height: 80}}>
                 </View>
-                <Button title={'goBack'} color={'orange'} onPress={() => {
-                    props.history.goBack();
-                }}/>
                 <View style={{height: 50,}}/>
                 <View style={{justifyContent: 'center', alignItems: 'center',}}>
-                    <IonButton color={'warning'} style={{color: 'orange',  width: '100%'}} fill={'outline'} onClick={() => {
-                        globalStore.incrementCount();
-                    }}>
+                    <IonButton color={'warning'} style={{color: 'orange', width: '100%'}} fill={'outline'}
+                               onClick={() => {
+                                   globalStore.incrementCounter2()
+                               }}>
                         increment count
+                    </IonButton>
+                </View>
+
+                <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 35,}}>
+                    <IonButton color={'warning'} style={{color: 'orange', width: '100%'}} fill={'outline'}
+                               onClick={() => {
+                                   globalStore.decrementCounter2();
+                               }}>
+                        decrement Counter2
                     </IonButton>
                 </View>
 
@@ -47,6 +55,7 @@ export default function DetailScreen(props: Props) {
                 </View>
             </IonContent>
         </IonPage>
+
     ))
 }
 

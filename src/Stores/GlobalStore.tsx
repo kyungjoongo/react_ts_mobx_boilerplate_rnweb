@@ -5,7 +5,7 @@ class GlobalStore {
 
     @observable count = 0;
 
-    @observable counter2 = 5;
+    @observable counter2 = 15;
 
     @action
     setCounter2(value: number) {
@@ -13,14 +13,26 @@ class GlobalStore {
     }
 
     @action
-    incrementCount() {
-        this.count = this.count + 1;
+    incrementCounter2() {
+        this.counter2 = this.counter2 + 1;
     }
 
+
     @action
-    decrementCount() {
-        this.count = this.count - 1;
+    decrementCounter2() {
+        this.counter2--;
     }
+
+
+    /* @action
+     incrementCount() {
+         this.count = this.count + 1;
+     }
+
+     @action
+     decrementCount() {
+         this.count = this.count - 1;
+     }*/
 
 }
 

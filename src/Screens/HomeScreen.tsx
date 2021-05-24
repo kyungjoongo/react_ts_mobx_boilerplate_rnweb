@@ -14,10 +14,11 @@ export const HomeScreen = (props: Props) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const willMount = useRef(true);
+
+
     if (willMount.current) {
         //todo : componentWillMount
     }
-
 
     useEffect(() => {
         initFetchData();
@@ -34,18 +35,8 @@ export const HomeScreen = (props: Props) => {
         }, 500)
     }
 
-    async function insertOne() {
-    }
-
-    async function updateOne() {
-    }
-
-
-    async function delelteOne(paramId: any) {
-    }
-
-    return useObserver(() => (
-        <IonPage>
+    function renderHeader() {
+        return (
             <IonHeader>
                 <IonToolbar>
                     <IonButtons slot="start">
@@ -56,15 +47,15 @@ export const HomeScreen = (props: Props) => {
                     <IonTitle>Home</IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent>
+        )
+    }
 
-                <View>
-                    <IonToolbar>
-                        <IonTitle>Home</IonTitle>
-                    </IonToolbar>
-                </View>
+    return useObserver(() => (
+        <IonPage>
+            {renderHeader()}
+            <IonContent>
                 <View style={{height: 50}}/>
-                <Button title={'push'} color={'red'} onPress={() => {
+                <Button title={'push to hooks'} color={'red'} onPress={() => {
                     props.history.push('/DetailScreen')
                 }}/>
 
@@ -78,6 +69,14 @@ export const HomeScreen = (props: Props) => {
                         {globalStore.counter2}
                     </Text>
                 </View>
+                <View>
+                    <Button title={'plus_1'} onPress={() => {
+                        globalStore.incrementCounter2()
+                    }}/>
+                </View>
+
+                <View style={{height: 20,}}/>
+
                 <View>
                     <Button title={'plus_10'} onPress={() => {
                         globalStore.setCounter2(globalStore.counter2 + 10)
@@ -120,8 +119,7 @@ export const HomeScreen = (props: Props) => {
                 })}
 
             </IonContent>
-        </
-            IonPage>
+        </IonPage>
     ))
 }
 
