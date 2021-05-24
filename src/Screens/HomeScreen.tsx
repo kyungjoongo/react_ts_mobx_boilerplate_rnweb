@@ -89,7 +89,25 @@ export const HomeScreen = (props: Props) => {
                         globalStore.setCounter2(globalStore.counter2 - 10)
                     }}/>
                 </View>
-                {loading && <ActivityIndicator color={'red'}/>}
+                <View style={{height: 30,}}/>
+                <Button
+                    color={'pink'}
+                    title={'reload'}
+                    onPress={async () => {
+                        setLoading(true)
+                        setResults([])
+                        let results: any = await getList();
+
+                        console.log("results-===>", results);
+                        setTimeout(() => {
+                            setLoading(false);
+                            setResults(results)
+                        }, 500)
+                    }}
+                />
+                {loading && <View style={{margin: 50,}}>
+                    <ActivityIndicator size={'large'} color={'blue'}/>
+                </View>}
                 {results.map((item: any, index) => {
                     return (
                         <View style={{flexDirection: 'row'}}>
@@ -100,6 +118,7 @@ export const HomeScreen = (props: Props) => {
                         </View>
                     )
                 })}
+
             </IonContent>
         </
             IonPage>
