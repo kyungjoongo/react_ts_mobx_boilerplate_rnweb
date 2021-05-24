@@ -88,7 +88,7 @@ export const HomeScreen = (props: Props) => {
                     }}/>
                 </View>
                 <View style={{height: 30,}}/>
-                <Button
+                {/*<Button
                     color={'pink'}
                     title={'reload'}
                     onPress={async () => {
@@ -102,8 +102,8 @@ export const HomeScreen = (props: Props) => {
                             setResults(results)
                         }, 500)
                     }}
-                />
-                {loading && <View style={{margin: 50,}}>
+                />*/}
+                {/*{loading && <View style={{margin: 50,}}>
                     <ActivityIndicator size={'large'} color={'blue'}/>
                 </View>}
                 {results.map((item: any, index) => {
@@ -115,7 +115,7 @@ export const HomeScreen = (props: Props) => {
                             </View>
                         </View>
                     )
-                })}
+                })}*/}
 
             </IonContent>
         </IonPage>

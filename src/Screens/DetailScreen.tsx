@@ -22,11 +22,6 @@ export default function DetailScreen(props: Props) {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <View style={{justifyContent: "center", alignItems: 'center', marginTop: 30,}}>
-                    <Text style={{fontSize: 22}}>
-                        DetailScreen
-                    </Text>
-                </View>
                 <View style={{height: 80}}>
                 </View>
                 <View style={{height: 50,}}/>
@@ -52,6 +47,16 @@ export default function DetailScreen(props: Props) {
                     <Text style={{fontSize: 22}}>
                         {globalStore.counter2}
                     </Text>
+                </View>
+
+                <View style={{justifyContent: "center", alignItems: 'center', marginTop: 30,}}>
+                    <Text style={{fontSize: 22, color: 'blue', fontWeight: "bold"}}>{globalStore.counter2}</Text>
+                </View>
+                <View style={{margin: 25,}}>
+                    <Button title={'+2'} onPress={() => {
+                        globalStore.incrementCounter2();
+
+                    }}/>
                 </View>
             </IonContent>
         </IonPage>
