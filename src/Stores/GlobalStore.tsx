@@ -1,13 +1,7 @@
-import {observable, action} from "mobx";
-import {autobind} from 'core-decorators';
-import * as Realm from "realm-web";
+import {action, observable} from "mobx";
 
 
 class GlobalStore {
-    constructor() {
-
-    }
-
 
     @observable count = 0;
 

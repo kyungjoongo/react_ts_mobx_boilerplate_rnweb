@@ -68,6 +68,11 @@ export const HomeScreen = (props: Props) => {
                     props.history.push('/DetailScreen')
                 }}/>
 
+                <View style={{height: 50}}/>
+                <Button title={'push to class component'} color={'orange'} onPress={() => {
+                    props.history.push('/DetailClassScreen')
+                }}/>
+
                 <View style={{justifyContent: 'center', alignItems: 'center', margin: 50,}}>
                     <Text style={{fontSize: 30}}>
                         {globalStore.counter2}
