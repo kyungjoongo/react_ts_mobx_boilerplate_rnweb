@@ -15,7 +15,6 @@ export const HomeScreen = (props: Props) => {
     const [loading, setLoading] = useState(false);
     const willMount = useRef(true);
 
-
     if (willMount.current) {
         //todo : componentWillMount
     }

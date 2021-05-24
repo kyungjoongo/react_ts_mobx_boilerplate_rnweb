@@ -3,9 +3,8 @@ import {action, observable} from "mobx";
 
 class GlobalStore {
 
-    @observable count = 0;
+    @observable counter2 = 10;
 
-    @observable counter2 = 15;
 
     @action
     setCounter2(value: number) {
@@ -15,15 +14,19 @@ class GlobalStore {
     @action
     incrementCounter2() {
         this.counter2 = this.counter2 + 1;
+
+        console.log("counter2-===>", this.counter2);
     }
 
 
     @action
     decrementCounter2() {
         this.counter2--;
+        console.log("counter2-===>", this.counter2);
     }
 
 
+    /*@observable count = 0;*/
     /* @action
      incrementCount() {
          this.count = this.count + 1;
