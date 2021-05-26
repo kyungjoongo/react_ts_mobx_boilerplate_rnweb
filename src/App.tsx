@@ -3,8 +3,8 @@ import './Styles/App.css';
 import {IonApp, IonRouterOutlet} from "@ionic/react";
 import {IonReactRouter} from "@ionic/react-router";
 import {Route,} from "react-router-dom";
-import {HomeScreen} from "./Screens/Home/HomeScreen";
-import DetailScreen from "./Screens/Detail/DetailScreen";
+import {HomeScreen} from "./Pages/Home/HomeScreen";
+import DetailScreen from "./Pages/Detail/DetailScreen";
 //todo: antd css
 import 'antd/dist/antd.css';
 
@@ -21,12 +21,12 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import WriteScreen from "./Screens/Write/WriteScreen";
-import DetailClassScreen from "./Screens/Detail/DetailClassScreen";
-import {ListScreen} from "./Screens/List/ListScreen";
-import TestScreen from "./Screens/Test/TestScreen";
-import TestDetailScreen from "./Screens/Test/TestDetailScreen";
-import {AlbumListScreen} from "./Screens/Alibums/AlbumListScreen";
+import WriteScreen from "./Pages/Write/WriteScreen";
+import DetailClassScreen from "./Pages/Detail/DetailClassScreen";
+import {ListScreen} from "./Pages/List/ListScreen";
+import TestScreen from "./Pages/Test/TestScreen";
+import TestDetailScreen from "./Pages/Test/TestDetailScreen";
+import {AlbumListScreen} from "./Pages/Alibums/AlbumListScreen";
 
 type Props = {};
 type State = {

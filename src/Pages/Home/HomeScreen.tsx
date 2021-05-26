@@ -99,7 +99,7 @@ export const HomeScreen = (props: Props) => {
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <Button title={'push to Login Screen'} color={'green'} onPress={() => {
+                <Button title={'push to Test Screen'} color={'green'} onPress={() => {
                     props.history.push('/TestScreen')
                 }}/>
                 <WhiteSpace/>
