@@ -2,10 +2,10 @@ import {ActivityIndicator, Button, Text, View} from "react-native";
 import React, {useEffect, useRef, useState} from "react";
 import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
-import globalStore from "../../Stores/GlobalStore";
-import {getList} from "../../Services/Shared/SharedService";
-import {WhiteSpace, CommonHeader} from "../../Components/Shared/SharedComponents";
-import testStore from "../../Stores/TestStore";
+import globalStore from "../../stores/GlobalStore";
+import {getList} from "../../services/Shared/SharedService";
+import {WhiteSpace, CommonHeader} from "../../components/Shared/SharedComponents";
+import testStore from "../../stores/TestStore";
 
 type Props = {
     history: any
@@ -86,7 +86,7 @@ export const HomeScreen = (props: Props) => {
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <Button title={'push to Test Screen'} color={'green'} onPress={() => {
+                <Button title={'push to test Screen'} color={'green'} onPress={() => {
                     props.history.push('/TestScreen')
                 }}/>
                 <WhiteSpace/>

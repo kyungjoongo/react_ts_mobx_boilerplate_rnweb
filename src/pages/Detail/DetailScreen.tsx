@@ -2,8 +2,8 @@ import {Button, Text, View} from "react-native";
 import React from "react";
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
-import globalStore from "../../Stores/GlobalStore";
-import {CommonHeader, WhiteSpace} from "../../Components/Shared/SharedComponents";
+import globalStore from "../../stores/GlobalStore";
+import {CommonHeader, WhiteSpace} from "../../components/Shared/SharedComponents";
 
 type Props = {
     history: any

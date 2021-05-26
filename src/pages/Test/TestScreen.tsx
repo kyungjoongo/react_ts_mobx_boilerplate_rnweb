@@ -1,17 +1,17 @@
 import {useObserver} from "mobx-react-lite";
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {Button, Text, View} from "react-native";
-import globalStore from "../../Stores/GlobalStore";
+import globalStore from "../../stores/GlobalStore";
 import React from "react";
-import testStore from "../../Stores/TestStore";
-import {CommonHeader, WhiteSpace} from "../../Components/Shared/SharedComponents";
+import testStore from "../../stores/TestStore";
+import {CommonHeader, WhiteSpace} from "../../components/Shared/SharedComponents";
 
 
 export default function TestScreen(props: any) {
 
     return useObserver(() => (
         <IonPage>
-            <CommonHeader title={'Test Screen'} color={'warning'}/>
+            <CommonHeader title={'test Screen'} color={'warning'}/>
             <IonContent>
                 <View style={{height: 50}}/>
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {observer} from "mobx-react";
 import {useEffect, useRef, useState} from "react";
-import {getList} from "../../Services/Shared/SharedService";
+import {getList} from "../../services/Shared/SharedService";
 import {
     IonBackButton,
     IonButtons,
@@ -15,8 +15,8 @@ import {
 } from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {ActivityIndicator, Button, Text, View} from "react-native";
-import globalStore from "../../Stores/GlobalStore";
-import testService from "../../Services/TestService";
+import globalStore from "../../stores/GlobalStore";
+import testService from "../../services/TestService";
 
 type Props = {};
 type State = {};
