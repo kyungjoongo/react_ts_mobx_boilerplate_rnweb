@@ -38,5 +38,6 @@ export type TypeBookMark = {
 
 
 export type TypeAlbum = {
-
+    title: string,
+    id: number,
 }

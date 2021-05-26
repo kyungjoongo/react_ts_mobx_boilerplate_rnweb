@@ -5,6 +5,8 @@ import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, Ion
 import {useObserver} from "mobx-react-lite";
 import {ActivityIndicator, Text, View} from "react-native";
 import albumService from "../../Services/AlbumService";
+import albumStore from "../../Stores/AlbumStore";
+import {TypeAlbum} from "../../Types/Types";
 
 type Props = {};
 type State = {};
@@ -25,7 +27,7 @@ export const AlbumListScreen = (props: Props) => {
         console.log("results-===>", albumList);
         setTimeout(() => {
             setLoading(false);
-            setResults(albumList)
+            albumStore.setAlbumList(albumList)
         }, 500)
     }
 
@@ -50,12 +52,12 @@ export const AlbumListScreen = (props: Props) => {
                     {loading && <View style={{margin: 10,}}>
                         <ActivityIndicator size={'large'} color={'orange'}/>
                     </View>}
-                    {!loading && results.map((item: any, index) => {
+                    {!loading && albumStore.albumList.map((item: TypeAlbum, index) => {
                         console.log("item===>", item);
                         return (
                             <View key={index.toString()} style={{flexDirection: "row"}}>
                                 <View style={{margin: 10}}>
-                                    <Text>{index.toString()}</Text>
+                                    <Text>{item.id}</Text>
                                 </View>
                                 <View style={{margin: 10}}>
                                     <Text>{item.title}</Text>

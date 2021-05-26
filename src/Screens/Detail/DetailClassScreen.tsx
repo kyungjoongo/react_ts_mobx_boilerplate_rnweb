@@ -48,7 +48,7 @@ class DetailClassScreen extends React.Component<Props, State> {
                             title={'incremtn_counter2'}
                             onPress={() => {
 
-                                globalStore.incrementCounter2();
+                                globalStore.incrementDoubleCount();
                             }}
                         />
                     </View>

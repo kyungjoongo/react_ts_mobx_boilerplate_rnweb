@@ -12,9 +12,13 @@ class GlobalTestStore {
     }
 
     @action
-    incrementCounter2() {
+    incrementDoubleCount() {
         this.counter2 = this.counter2 + 2;
         console.log("counter2-===>", this.counter2);
+    }
+
+    incrementQuarterCount(){
+        this.counter2 = this.counter2 +4;
     }
 
 
