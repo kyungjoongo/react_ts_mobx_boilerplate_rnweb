@@ -4,7 +4,7 @@ import {Button, Text, View} from "react-native";
 import globalStore from "../../Stores/GlobalStore";
 import React from "react";
 import testStore from "../../Stores/TestStore";
-import WhiteSpace from "../../Components/Shared/SharedComponents";
+import {WhiteSpace} from "../../Components/Shared/SharedComponents";
 
 
 export default function TestDetailScreen(props: any) {

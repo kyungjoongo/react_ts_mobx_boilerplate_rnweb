@@ -4,7 +4,7 @@ import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Ion
 import {useObserver} from "mobx-react-lite";
 import globalStore from "../../Stores/GlobalStore";
 import {getList} from "../../Services/SharedService";
-import WhiteSpace from "../../Components/Shared/SharedComponents";
+import {WhiteSpace, CommonHeader} from "../../Components/Shared/SharedComponents";
 import testStore from "../../Stores/TestStore";
 
 type Props = {
