@@ -13,11 +13,9 @@ class AlbumService {
                 headers: {
                     'Access-Control-Allow-Origin': '*'
                 }
-            }).then(response => {
-                return response.data;
-            })
+            }).then(response => (response.data))
         } catch (e) {
-            return [];
+            alert(e.toString())
         }
     }
 
