@@ -2,7 +2,7 @@ import {Button, Text, View} from "react-native";
 import React from "react";
 import {IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
-import globalStore from "../Stores/GlobalStore";
+import globalStore from "../../Stores/GlobalStore";
 
 type Props = {
     history: any

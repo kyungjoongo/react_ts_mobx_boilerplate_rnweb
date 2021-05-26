@@ -2,8 +2,10 @@ import {ActivityIndicator, Button, Text, View} from "react-native";
 import React, {useEffect, useRef, useState} from "react";
 import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
-import globalStore from "../Stores/GlobalStore";
-import {getList} from "../Services/SharedService";
+import globalStore from "../../Stores/GlobalStore";
+import {getList} from "../../Services/SharedService";
+import WhiteSpace from "../../Components/Shared/SharedComponents";
+import testStore from "../../Stores/TestStore";
 
 type Props = {
     history: any
@@ -88,34 +90,37 @@ export const HomeScreen = (props: Props) => {
                     }}/>
                 </View>
                 <View style={{height: 30,}}/>
-                {/*<Button
-                    color={'pink'}
-                    title={'reload'}
-                    onPress={async () => {
-                        setLoading(true)
-                        setResults([])
-                        let results: any = await getList();
 
-                        console.log("results-===>", results);
-                        setTimeout(() => {
-                            setLoading(false);
-                            setResults(results)
-                        }, 500)
-                    }}
-                />*/}
-                {/*{loading && <View style={{margin: 50,}}>
-                    <ActivityIndicator size={'large'} color={'blue'}/>
-                </View>}
-                {results.map((item: any, index) => {
-                    return (
-                        <View style={{flexDirection: 'row'}}>
-                            <Text>{index.toString()}</Text>
-                            <View style={{marginLeft: 50,}}>
-                                <Text>{item.title}</Text>
-                            </View>
-                        </View>
-                    )
-                })}*/}
+
+                <Button title={'push to list Screen'} color={'pink'} onPress={() => {
+                    props.history.push('/ListScreen')
+                }}/>
+
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <Button title={'push to Login Screen'} color={'green'} onPress={() => {
+                    props.history.push('/TestScreen')
+                }}/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <Button title={'push to AlbumList Screen'} color={'grey'} onPress={() => {
+                    props.history.push('/AlbumListScreen')
+                }}/>
+
+
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+                    <View style={{margin: 10,}}>
+                        <Text style={{fontSize: 35, fontWeight: "bold"}}>
+                            testCount : {testStore.testCount}
+                        </Text>
+                    </View>
+                </View>
+
 
             </IonContent>
         </IonPage>

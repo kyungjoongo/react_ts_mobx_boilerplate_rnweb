@@ -1,7 +1,7 @@
 import {action, observable} from "mobx";
 
 
-class GlobalStore {
+class GlobalTestStore {
 
     @observable counter2 = 0;
 
@@ -24,20 +24,8 @@ class GlobalStore {
         console.log("counter2-===>", this.counter2);
     }
 
-
-    /*@observable count = 0;*/
-    /* @action
-     incrementCount() {
-         this.count = this.count + 1;
-     }
-
-     @action
-     decrementCount() {
-         this.count = this.count - 1;
-     }*/
-
 }
 
-const globalStore = new GlobalStore();
+const globalStore = new GlobalTestStore();
 
 export default globalStore

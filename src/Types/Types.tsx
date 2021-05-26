@@ -35,3 +35,8 @@ export type TypeBookMark = {
     lawyerUserId: any,
     _id: any,
 }
+
+
+export type TypeAlbum = {
+
+}

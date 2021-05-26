@@ -3,8 +3,8 @@ import './Styles/App.css';
 import {IonApp, IonRouterOutlet} from "@ionic/react";
 import {IonReactRouter} from "@ionic/react-router";
 import {Route,} from "react-router-dom";
-import {HomeScreen} from "./Screens/HomeScreen";
-import DetailScreen from "./Screens/DetailScreen";
+import {HomeScreen} from "./Pages/Home/HomeScreen";
+import DetailScreen from "./Pages/Detail/DetailScreen";
 //todo: antd css
 import 'antd/dist/antd.css';
 
@@ -21,8 +21,12 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import WriteScreen from "./Screens/WriteScreen";
-import DetailClassScreen from "./Screens/DetailClassScreen";
+import WriteScreen from "./Pages/Write/WriteScreen";
+import DetailClassScreen from "./Pages/Detail/DetailClassScreen";
+import {ListScreen} from "./Pages/List/ListScreen";
+import TestScreen from "./Pages/Test/TestScreen";
+import TestDetailScreen from "./Pages/Test/TestDetailScreen";
+import {AlbumListScreen} from "./Pages/Alibums/AlbumListScreen";
 
 type Props = {};
 type State = {
@@ -38,6 +42,7 @@ export default class App extends React.Component<Props, State> {
         }
     }
 
+
     render() {
         return (
             <IonApp>
@@ -47,6 +52,10 @@ export default class App extends React.Component<Props, State> {
                         <Route path="/DetailScreen" exact component={DetailScreen}/>
                         <Route path="/DetailClassScreen" exact component={DetailClassScreen}/>
                         <Route path="/WriteScreen" exact component={WriteScreen}/>
+                        <Route path="/ListScreen" exact component={ListScreen}/>
+                        <Route path="/TestScreen" exact component={TestScreen}/>
+                        <Route path="/TestDetailScreen" exact component={TestDetailScreen}/>
+                        <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
                     </IonRouterOutlet>
                 </IonReactRouter>
             </IonApp>
