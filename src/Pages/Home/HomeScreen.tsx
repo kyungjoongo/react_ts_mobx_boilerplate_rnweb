@@ -53,7 +53,7 @@ export const HomeScreen = (props: Props) => {
 
     return useObserver(() => (
         <IonPage>
-            {renderHeader()}
+            <CommonHeader title={'HomeScreen'} color={'warning'}/>
             <IonContent>
                 <View style={{height: 50}}/>
                 <Button title={'push to DetailScreen hooks'} color={'red'} onPress={() => {
