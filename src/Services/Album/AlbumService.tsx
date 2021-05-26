@@ -1,9 +1,8 @@
 import * as React from 'react';
 import axios from "axios";
-import {ALBUM_FETCH_URL} from "../Constants/SharedContants";
+import {ALBUM_FETCH_URL} from "../../Constants/SharedContants";
 
 class AlbumService {
-
     getAlbumList = async () => {
         try {
             return await axios({

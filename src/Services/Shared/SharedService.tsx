@@ -56,13 +56,3 @@ export default async function getMelonList(url = 'chart/week/index.htm?classCd=G
 
 }
 
-
-export async function getBookmarks(url = 'chart/week/index.htm?classCd=GN1300') {
-    // @ts-ignore
-    /* const mongodb = app.currentUser.mongoClient("mongodb-atlas");
-     const _bookmarks = mongodb.db("portal").collection("bookmarks")
-     const results = await _bookmarks.find(   )
-     return results.reverse();*/
-    return [];
-
-}

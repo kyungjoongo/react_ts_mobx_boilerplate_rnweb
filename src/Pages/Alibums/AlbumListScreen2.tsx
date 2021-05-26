@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {ActivityIndicator, Text, View} from "react-native";
-import albumService from "../../Services/AlbumService";
+import albumService from "../../Services/Album/AlbumService";
 import {TypeAlbum} from "../../Types/Types";
 import _ from 'lodash'
 import globalStore from "../../Stores/GlobalStore";

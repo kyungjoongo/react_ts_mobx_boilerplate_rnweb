@@ -3,7 +3,18 @@ import {action, observable} from "mobx";
 
 class GlobalTestStore {
 
-    @observable counter2 = 0;
+    @observable counter2 = 20;
+
+
+    @action
+    incrementTrippleCounter2() {
+        this.counter2 = this.counter2 + 3;
+    }
+
+    @action
+    decrementTrippleCounter2() {
+        this.counter2 = this.counter2 - 3;
+    }
 
 
     @action

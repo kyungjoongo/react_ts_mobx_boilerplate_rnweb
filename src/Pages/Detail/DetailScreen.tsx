@@ -20,6 +20,13 @@ export default function DetailScreen(props: Props) {
                     <View style={{height: 80}}>
                     </View>
                     <View style={{height: 50,}}/>
+                    <View style={{alignItems: "center", marginVertical:50}}>
+                        <Text style={{fontSize: 40, }}>
+                            {globalStore.counter2}
+                        </Text>
+                    </View>
+
+
                     <View style={{justifyContent: 'center', alignItems: 'center',}}>
                         <IonButton color={'warning'} style={{color: 'orange', width: '100%'}} fill={'outline'}
                                    onClick={() => {

@@ -3,7 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import globalStore from "../../Stores/GlobalStore";
-import {getList} from "../../Services/SharedService";
+import {getList} from "../../Services/Shared/SharedService";
 import {WhiteSpace, CommonHeader} from "../../Components/Shared/SharedComponents";
 import testStore from "../../Stores/TestStore";
 
@@ -36,24 +36,11 @@ export const HomeScreen = (props: Props) => {
         }, 500)
     }
 
-    function renderHeader() {
-        return (
-            <IonHeader>
-                <IonToolbar>
-                    <IonButtons slot="start">
-                        <IonMenuButton>
-
-                        </IonMenuButton>
-                    </IonButtons>
-                    <IonTitle>Home</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-        )
-    }
 
     return useObserver(() => (
         <IonPage>
-            <CommonHeader title={'HomeScreen'} color={'warning'}/>
+            <CommonHeader title={'HomeScreen'} color={'warning'} isRoot={true}/>
+
             <IonContent>
                 <View style={{height: 50}}/>
                 <Button title={'push to DetailScreen hooks'} color={'red'} onPress={() => {
@@ -105,7 +92,7 @@ export const HomeScreen = (props: Props) => {
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <Button title={'push to AlbumList Screen(fetch from remote and set list to globalStore'} color={'grey'}
+                <Button title={'push to AlbumList Screen(fetch from remote and set to globalStore'} color={'grey'}
                         onPress={() => {
                             props.history.push('/AlbumListScreen')
                         }}/>

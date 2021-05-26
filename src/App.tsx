@@ -1,5 +1,5 @@
 import React from 'react';
-import './Styles/App.css';
+import './Assets/Styles/App.css';
 import {IonApp, IonRouterOutlet} from "@ionic/react";
 import {IonReactRouter} from "@ionic/react-router";
 import {Route,} from "react-router-dom";

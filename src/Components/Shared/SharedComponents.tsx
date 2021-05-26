@@ -1,5 +1,5 @@
 import {View} from "react-native";
-import {IonBackButton, IonButtons, IonHeader, IonTitle, IonToolbar} from "@ionic/react";
+import {IonBackButton, IonButtons, IonHeader, IonMenuButton, IonTitle, IonToolbar} from "@ionic/react";
 import * as React from "react";
 
 
@@ -10,13 +10,20 @@ export function WhiteSpace(props: any) {
 }
 
 
-export function CommonHeader({title, color = 'primary'}: any) {
+export function CommonHeader({title, color = 'primary', isRoot = false}: any) {
     return (
         <IonHeader>
             <IonToolbar color={color}>
-                <IonButtons slot="start">
-                    <IonBackButton defaultHref="/"/>
-                </IonButtons>
+                {isRoot ?
+                    <IonMenuButton>
+
+                    </IonMenuButton>
+                    :
+                    <IonButtons slot="start">
+                        <IonBackButton defaultHref="/"/>
+                    </IonButtons>
+                }
+
                 <IonTitle>{title}</IonTitle>
             </IonToolbar>
         </IonHeader>
