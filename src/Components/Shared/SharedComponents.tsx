@@ -10,14 +10,14 @@ export function WhiteSpace(props: any) {
 }
 
 
-export function CommonHeader(props: any) {
+export function CommonHeader({title, color = 'primary'}: any) {
     return (
         <IonHeader>
-            <IonToolbar color={'warning'}>
+            <IonToolbar color={color}>
                 <IonButtons slot="start">
                     <IonBackButton defaultHref="/"/>
                 </IonButtons>
-                <IonTitle>{props.title}</IonTitle>
+                <IonTitle>{title}</IonTitle>
             </IonToolbar>
         </IonHeader>
     )

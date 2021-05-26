@@ -3,7 +3,6 @@ import {action, observable} from "mobx";
 
 class TestStore {
 
-
     @observable testCount = 0;
 
     @action

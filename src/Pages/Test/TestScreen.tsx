@@ -4,28 +4,14 @@ import {Button, Text, View} from "react-native";
 import globalStore from "../../Stores/GlobalStore";
 import React from "react";
 import testStore from "../../Stores/TestStore";
-import {WhiteSpace} from "../../Components/Shared/SharedComponents";
+import {CommonHeader, WhiteSpace} from "../../Components/Shared/SharedComponents";
 
 
 export default function TestScreen(props: any) {
 
-    function renderHeader(title: string) {
-        return (
-            <IonHeader>
-                <IonToolbar color="danger">
-                    <IonButtons slot="start">
-                        <IonBackButton defaultHref="/"/>
-                    </IonButtons>
-                    <IonTitle>{title}</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-        )
-    }
-
-
     return useObserver(() => (
         <IonPage>
-            {renderHeader('TestScreen')}
+            <CommonHeader title={'Test Screen'} color={'warning'}/>
             <IonContent>
                 <View style={{height: 50}}/>
                 <View style={{justifyContent: 'center', alignItems: 'center'}}>
