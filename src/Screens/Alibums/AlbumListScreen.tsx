@@ -7,6 +7,7 @@ import {ActivityIndicator, Text, View} from "react-native";
 import albumService from "../../Services/AlbumService";
 import albumStore from "../../Stores/AlbumStore";
 import {TypeAlbum} from "../../Types/Types";
+import _ from 'lodash'
 
 type Props = {};
 type State = {};
@@ -53,7 +54,7 @@ export const AlbumListScreen = (props: Props) => {
                         <ActivityIndicator size={'large'} color={'orange'}/>
                     </View>}
                     {!loading && albumStore.albumList.map((item: TypeAlbum, index) => {
-                        console.log("item===>", item);
+                        console.log("item===>", _.cloneDeep(item));
                         return (
                             <View key={index.toString()} style={{flexDirection: "row"}}>
                                 <View style={{margin: 10}}>
