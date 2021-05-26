@@ -61,7 +61,7 @@ export const HomeScreen = (props: Props) => {
                 }}/>
 
                 <View style={{height: 50}}/>
-                <Button title={'push to class component'} color={'orange'} onPress={() => {
+                <Button title={'push to Detail Class Page'} color={'orange'} onPress={() => {
                     props.history.push('/DetailClassScreen')
                 }}/>
 
