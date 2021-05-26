@@ -5,9 +5,10 @@ import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, Ion
 import {useObserver} from "mobx-react-lite";
 import {ActivityIndicator, Text, View} from "react-native";
 import albumService from "../../Services/AlbumService";
-import albumStore from "../../Stores/AlbumStore";
 import {TypeAlbum} from "../../Types/Types";
 import _ from 'lodash'
+import globalStore from "../../Stores/GlobalStore";
+import albumStore from "../../Stores/AlbumStore";
 
 type Props = {};
 type State = {};
@@ -24,7 +25,6 @@ export const AlbumListScreen = (props: Props) => {
     async function initFetchData() {
         setLoading(true)
         let albumList: any = await albumService.getAlbumList()
-
         console.log("results-===>", albumList);
         setTimeout(() => {
             setLoading(false);

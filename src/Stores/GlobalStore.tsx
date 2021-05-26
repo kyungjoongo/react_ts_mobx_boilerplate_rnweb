@@ -17,8 +17,8 @@ class GlobalTestStore {
         console.log("counter2-===>", this.counter2);
     }
 
-    incrementQuarterCount(){
-        this.counter2 = this.counter2 +4;
+    incrementQuarterCount() {
+        this.counter2 = this.counter2 + 4;
     }
 
 
@@ -27,6 +27,7 @@ class GlobalTestStore {
         this.counter2--;
         console.log("counter2-===>", this.counter2);
     }
+
 
 }
 

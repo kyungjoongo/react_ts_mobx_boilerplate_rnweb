@@ -6,13 +6,13 @@ class AlbumStore {
     @observable albumList = []
 
     @action
-    setAlbumList(pArrayList: any) {
-        this.albumList = pArrayList
-    }
+    setAlbumList(paramArrList: any) {
+        this.albumList = paramArrList
 
+    }
 
 }
 
-const albumStore = new AlbumStore();
+const albumStore = new AlbumStore()
 
 export default albumStore
