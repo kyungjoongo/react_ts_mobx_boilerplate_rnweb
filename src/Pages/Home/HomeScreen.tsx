@@ -56,12 +56,12 @@ export const HomeScreen = (props: Props) => {
             {renderHeader()}
             <IonContent>
                 <View style={{height: 50}}/>
-                <Button title={'push to hooks'} color={'red'} onPress={() => {
+                <Button title={'push to DetailScreen hooks'} color={'red'} onPress={() => {
                     props.history.push('/DetailScreen')
                 }}/>
 
                 <View style={{height: 50}}/>
-                <Button title={'push to Detail Class Page'} color={'orange'} onPress={() => {
+                <Button title={'push to DetailScreen Class Page'} color={'orange'} onPress={() => {
                     props.history.push('/DetailClassScreen')
                 }}/>
 
@@ -105,8 +105,16 @@ export const HomeScreen = (props: Props) => {
                 <WhiteSpace/>
                 <WhiteSpace/>
                 <WhiteSpace/>
-                <Button title={'push to AlbumList Screen'} color={'grey'} onPress={() => {
-                    props.history.push('/AlbumListScreen')
+                <Button title={'push to AlbumList Screen(fetch from remote and set list to globalStore'} color={'grey'}
+                        onPress={() => {
+                            props.history.push('/AlbumListScreen')
+                        }}/>
+
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <WhiteSpace/>
+                <Button title={'push to AlbumListScreen2'} color={'skyblue'} onPress={() => {
+                    props.history.push('/AlbumListScreen2')
                 }}/>
 
 

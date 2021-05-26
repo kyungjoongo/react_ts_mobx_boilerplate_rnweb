@@ -5,10 +5,21 @@ import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, Ion
 import globalStore from "../../Stores/GlobalStore";
 
 type Props = {};
-type State = {};
-
+type State = {
+    loading: boolean,
+    results: any,
+};
 
 class DetailClassScreen extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            loading: false,
+            results: [],
+        }
+    }
 
     componentDidMount(): void {
 
@@ -70,7 +81,6 @@ class DetailClassScreen extends React.Component<Props, State> {
         );
     };
 }
-
 
 export default observer(DetailClassScreen)
 
