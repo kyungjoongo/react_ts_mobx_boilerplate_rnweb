@@ -15,7 +15,6 @@ type State = {};
 
 
 export const AlbumListScreen2 = (props: Props) => {
-    const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -44,7 +43,6 @@ export const AlbumListScreen2 = (props: Props) => {
                         <ActivityIndicator size={'large'} color={'orange'}/>
                     </View>}
                     {albumStore.albumList.map((item: TypeAlbum, index) => {
-                        console.log("item===>", _.cloneDeep(item));
                         return (
                             <View key={index.toString()} style={{flexDirection: "row"}}>
                                 <View style={{margin: 10}}>

@@ -7,7 +7,7 @@ class AlbumService {
         try {
             return await axios({
                 method: 'get',
-                url: ALBUM_FETCH_URL,
+                url: 'https://jsonplaceholder.typicode.com/albums',
                 timeout: 1000 * 10,
                 headers: {
                     'Access-Control-Allow-Origin': '*'

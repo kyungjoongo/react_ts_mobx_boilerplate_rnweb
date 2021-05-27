@@ -23,8 +23,8 @@ class GlobalTestStore {
     }
 
     @action
-    incrementDoubleCount() {
-        this.counter2 = this.counter2 + 2;
+    incrementQuaterCount() {
+        this.counter2 = this.counter2 + 4;
     }
 
     @action

@@ -59,7 +59,7 @@ export const HomeScreen = (props: Props) => {
                 </View>
                 <View>
                     <Button title={'plus_1'} onPress={() => {
-                        globalStore.incrementDoubleCount()
+                        globalStore.incrementQuaterCount()
                     }}/>
                 </View>
 
