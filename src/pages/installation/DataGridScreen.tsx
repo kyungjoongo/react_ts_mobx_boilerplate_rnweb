@@ -6,10 +6,11 @@ import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, Ion
 import {useObserver} from "mobx-react-lite";
 import {DataGrid, GridColDef, GridEditRowModelParams, GridValueGetterParams} from '@material-ui/data-grid';
 import {View, Text, Image} from "react-native";
-import {Avatar, Button} from "@material-ui/core";
+import {Avatar, Button, TextField} from "@material-ui/core";
 import {WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
+import {getFourthDigitNumber, getThreeDigitNumber} from "../../services/shared/SharedService";
 
 
 const columns: GridColDef[] = [
@@ -30,6 +31,7 @@ type State = {};
 export const DataGridScreen = (props: Props) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [selectRow, setSelectRow]: any = useState([]);
 
 
     const [editRowsModel, setEditRowsModel] = React.useState({});
@@ -165,22 +167,53 @@ export const DataGridScreen = (props: Props) => {
                 {/*todo:***********************************/}
                 <div style={{height: 400, width: '100%'}}>
                     <DataGrid
-                        /*onSelectionModelChange={(params) => {
-                            console.log("onSelectionModelChange===>", params.selectionModel);
+                        onSelectionModelChange={(params) => {
 
-                        }}*/
+                            console.log("selectionModel===>", params.selectionModel);
 
-                        onRowSelected={(param) => {
-                            console.log("onRowSelected===>", param.api.current.getSelectedRows());
+                            let selectRows = params.selectionModel
+
+                            gridRowStore.setSelectedRows(selectRows)
+
+
+                            console.log("checkedRowscheckedRowscheckedRows===>", _.cloneDeep(gridRowStore.selectedRows));
+
                         }}
+
 
                         rows={_.cloneDeep(gridRowStore.rows)}
                         columns={columns}
                         pageSize={5}
                         checkboxSelection
                         onEditRowModelChange={handleEditRowModelChange}
+
+
+                        /*onRowSelected={(param) => {
+                          let mapRows = param.api.current.getSelectedRows();
+                          let rowList: any = []
+                          mapRows.forEach((value: any, key: any) => {
+                              //console.log("temp===>", value);
+                              rowList.push(value)
+                          });
+                          //console.log("arrList===>", arrList);
+                          console.log("temp===>", rowList[0]);
+                          rowList[0].mac = '고경준 맥주소'
+                          gridRowStore.setRows(rowList)
+                      }}*/
                     />
                 </div>
+                <View style={{margin: 15, width: 200,}}>
+                    <TextField
+                        id="standard-basic"
+                        label="ip_address"
+
+                        onChange={(e) => {
+                            console.log("onChange===>", e.target.value);
+                            gridRowStore.setIpAddress(e.target.value)
+                        }}
+                    />
+                </View>
+
                 <View style={{flexDirection: 'row'}}>
                     <WhiteSpace/>
                     <Button
@@ -199,7 +232,35 @@ export const DataGridScreen = (props: Props) => {
                     <WhiteSpace/>
                     <Button variant="contained">Default</Button>
                     <WhiteSpace/>
-                    <Button variant="contained">Default</Button>
+
+
+                    <View>
+                        <Button variant="contained" color={'primary'}
+                                onClick={() => {
+                                    let allRows = _.cloneDeep(gridRowStore.rows);
+
+                                    console.log("allRows===>", allRows);
+
+                                    console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
+
+                                    let selectedRowsList = _.cloneDeep(gridRowStore.selectedRows);
+
+                                    let threeDigitNo = getThreeDigitNumber(gridRowStore.ipAddress)
+
+                                    let forthDigitNo = getFourthDigitNumber(gridRowStore.ipAddress)
+
+                                    selectedRowsList.map((item, index) => {
+                                        allRows[parseInt(item) - 1].ip = threeDigitNo.toString() + '.' + (parseInt(forthDigitNo) + parseInt(index.toString())).toString()
+                                    })
+
+                                    gridRowStore.setRows(allRows)
+                                }}
+
+
+                        >set rows</Button>
+                    </View>
+
+
                     <WhiteSpace/>
                 </View>
             </IonContent>

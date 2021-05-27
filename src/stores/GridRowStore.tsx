@@ -13,6 +13,21 @@ class GridRowStore {
 
     ]
 
+    @observable selectedRows = []
+
+    @observable ipAddress: string = '';
+
+
+    @action
+    setIpAddress(value: string) {
+        this.ipAddress = value;
+    }
+
+    @action
+    setSelectedRows(paramArrayList: any) {
+        this.selectedRows = paramArrayList;
+    }
+
     @action
     setRows(pArrayList: any) {
         this.rows = pArrayList

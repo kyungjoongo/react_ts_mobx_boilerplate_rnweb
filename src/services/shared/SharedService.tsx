@@ -1,5 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
+import gridRowStore from "../../stores/GridRowStore";
 
 export const getList = async () => {
     try {
@@ -18,6 +19,21 @@ export const getList = async () => {
     }
 }
 
+export function getThreeDigitNumber(pIpAddr: any) {
+    let tempList = pIpAddr.split(".")
+    console.log("tempList===>", tempList);
+
+    let threeDigitAddress = tempList[0] + "." + tempList[1] + "." + tempList[2]
+
+    return threeDigitAddress;
+}
+
+
+export function getFourthDigitNumber(pIpAddr: any) {
+    let tempList = pIpAddr.split(".")
+
+    return tempList[3];
+}
 
 
 export default async function getMelonList(url = 'chart/week/index.htm?classCd=GN1300') {
