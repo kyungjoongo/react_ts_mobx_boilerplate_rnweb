@@ -6,7 +6,7 @@ import InputMask from "react-input-mask";
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {DataGrid, GridColDef, GridEditRowModelParams} from '@material-ui/data-grid';
-import {Text, View} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
 import {Avatar, Button, createStyles, makeStyles, Modal, Snackbar, TextField, Theme} from "@material-ui/core";
 import {WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
@@ -42,7 +42,7 @@ type Props = {};
 type State = {};
 
 
-export const DataGridScreen = (props: Props) => {
+export const InstallDetailScreen = (props: Props) => {
     const classes = useStyles();
     const [open, setOpen]: any = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false)
@@ -101,6 +101,18 @@ export const DataGridScreen = (props: Props) => {
                 <WhiteSpace/>
                 <View>
                     <Avatar alt="김sdlkf" src={'sdflkdl'}/>
+                </View>
+                <View style={Styles.circle001}>
+                    <TouchableOpacity
+                        style={Styles.touch001}
+                        onPress={() => {
+                            alert('사람 추가~~')
+                        }}
+                    >
+                        <Text style={{fontSize: 30, lineHeight: 100, marginTop: -5}}>
+                            {`+`}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -187,8 +199,8 @@ export const DataGridScreen = (props: Props) => {
                     <h2 id="simple-modal-title">IP Address를 입력..</h2>
                     <View>
                         <TextField
-                            onKeyDown={e=>{
-                                if(e.keyCode == 13){
+                            onKeyDown={e => {
+                                if (e.keyCode == 13) {
                                     saveIpAddress()
                                 }
                             }}
@@ -270,7 +282,7 @@ export const DataGridScreen = (props: Props) => {
 
     return useObserver(() => (
         <IonPage>
-            {renderHeader('DataGrid Screen')}
+            {renderHeader('InstallDetailScreen')}
             <IonContent>
                 <View style={{width: '100%'}}>
                     {renderPjt()}
@@ -302,6 +314,25 @@ export const DataGridScreen = (props: Props) => {
         </IonPage>
     ))
 }
+
+
+const Styles = StyleSheet.create({
+    circle001: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 10,
+    },
+    touch001: {
+        backgroundColor: 'grey',
+        width: 40,
+        height: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 50,
+    }
+});
 
 
 /*onRowSelected={(param) => {

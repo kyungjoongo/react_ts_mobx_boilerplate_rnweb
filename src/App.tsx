@@ -26,7 +26,7 @@ import TestScreen from "./pages/TestScreen";
 import TestDetailScreen from "./pages/TestDetailScreen";
 import {AlbumListScreen} from "./pages/album/AlbumListScreen";
 import {AlbumListScreen2} from "./pages/album/AlbumListScreen2";
-import {DataGridScreen} from "./pages/installation/DataGridScreen";
+import {InstallDetailScreen} from "./pages/installation/InstallDetailScreen";
 
 type Props = {};
 type State = {
@@ -57,7 +57,7 @@ export default class App extends React.Component<Props, State> {
                         <Route path="/TestDetailScreen" exact component={TestDetailScreen}/>
                         <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
                         <Route path="/AlbumListScreen2" exact component={AlbumListScreen2}/>
-                        <Route path="/DataGridScreen" exact component={DataGridScreen}/>
+                        <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
                     </IonRouterOutlet>
                 </IonReactRouter>
             </IonApp>

@@ -103,8 +103,8 @@ export const HomeScreen = (props: Props) => {
                 }}/>
                 <WhiteSpace/>
 
-                <Button title={'push to DataGridScreen'} color={'red'} onPress={() => {
-                    props.history.push('/DataGridScreen')
+                <Button title={'push to 인스톨 상세 화면'} color={'maroon'} onPress={() => {
+                    props.history.push('/InstallDetailScreen')
                 }}/>
 
 
