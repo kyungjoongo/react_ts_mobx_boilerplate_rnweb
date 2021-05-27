@@ -141,7 +141,7 @@ export const DataGridScreen = (props: Props) => {
                     }}
                 >
                     <Text>
-                        Kim hanwha
+                        Kim 아무개
                     </Text>
                 </View>
             </View>
@@ -187,6 +187,11 @@ export const DataGridScreen = (props: Props) => {
                     <h2 id="simple-modal-title">IP Address를 입력..</h2>
                     <View>
                         <TextField
+                            onKeyDown={e=>{
+                                if(e.keyCode == 13){
+                                    saveIpAddress()
+                                }
+                            }}
                             ref={inputRef}
                             autoFocus={true}
                             id="standard-basic"
