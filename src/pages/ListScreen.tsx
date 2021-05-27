@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {observer} from "mobx-react";
 import {useEffect, useRef, useState} from "react";
-import {getList} from "../services/Shared/SharedService";
+import {getList} from "../services/shared/SharedService";
 import {
     IonBackButton,
     IonButtons,

@@ -4,7 +4,7 @@ import {Button, Text, View} from "react-native";
 import globalStore from "../stores/GlobalStore";
 import React from "react";
 import testStore from "../stores/TestStore";
-import {CommonHeader, WhiteSpace} from "../components/Shared/SharedComponents";
+import {CommonHeader, WhiteSpace} from "../components/shared/SharedComponents";
 
 
 export default function TestScreen(props: any) {
