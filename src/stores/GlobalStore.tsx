@@ -25,18 +25,16 @@ class GlobalTestStore {
     @action
     incrementDoubleCount() {
         this.counter2 = this.counter2 + 2;
-        console.log("counter2-===>", this.counter2);
     }
 
+    @action
     incrementQuarterCount() {
         this.counter2 = this.counter2 + 4;
     }
 
-
     @action
     decrementCounter2() {
         this.counter2--;
-        console.log("counter2-===>", this.counter2);
     }
 
 
