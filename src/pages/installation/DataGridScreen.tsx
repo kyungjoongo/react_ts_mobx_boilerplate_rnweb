@@ -249,15 +249,10 @@ export const DataGridScreen = (props: Props) => {
                 >Get all rows</Button>
                 <WhiteSpace/>
                 <Button color='secondary' variant='outlined' onClick={() => {
-
                     if (gridRowStore.selectedRows.length === 0) {
                         setSnackbarOpen(true)
                     } else {
                         setOpen(true)
-                        setTimeout(() => {
-                            // @ts-ignore
-                            inputRef.current.focus();
-                        }, 1000)
                     }
                 }}>
                     ip address multi 입력
