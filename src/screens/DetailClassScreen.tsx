@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Text, View} from "react-native";
 import {observer} from "mobx-react";
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
-import globalStore from "../../stores/GlobalStore";
+import globalStore from "../stores/GlobalStore";
 
 type Props = {};
 type State = {

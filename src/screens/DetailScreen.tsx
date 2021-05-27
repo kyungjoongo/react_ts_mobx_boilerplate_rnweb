@@ -2,8 +2,8 @@ import {Button, Text, View} from "react-native";
 import React from "react";
 import {IonButton, IonContent, IonPage} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
-import globalStore from "../../stores/GlobalStore";
-import {CommonHeader, WhiteSpace} from "../../components/Shared/SharedComponents";
+import globalStore from "../stores/GlobalStore";
+import {CommonHeader, WhiteSpace} from "../components/Shared/SharedComponents";
 
 type Props = {
     history: any
@@ -15,7 +15,7 @@ export default function DetailScreen(props: Props) {
     return useObserver(() => (
         (
             <IonPage>
-                <CommonHeader title={'Detail Screen'}/>
+                <CommonHeader title={'detail Screen'}/>
                 <IonContent>
                     <View style={{height: 80}}>
                     </View>
