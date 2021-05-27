@@ -1,12 +1,16 @@
 // @flow
 import * as React from 'react';
 import {useEffect, useState} from 'react';
+import {Delete, Facebook} from '@material-ui/icons';
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {DataGrid, GridColDef, GridEditRowModelParams, GridValueGetterParams} from '@material-ui/data-grid';
 import {View, Text, Image} from "react-native";
-import {Avatar} from "@material-ui/core";
+import {Avatar, Button} from "@material-ui/core";
 import {WhiteSpace} from "../../components/shared/SharedComponents";
+import gridRowStore from "../../stores/GridRowStore";
+import _ from 'lodash'
+
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 120},
@@ -18,16 +22,6 @@ const columns: GridColDef[] = [
 
 ];
 
-const rows = [
-    {id: 1, mac: '2f:22:33:44:55', sn: '3129012asddkj', ip: '192.168.0.1', gateway: '255.255.221.0'},
-    {id: 2, mac: '2f:22:33:44:52', sn: '132234sfsdf', ip: '192.168.0.2', gateway: '255.255.221.0'},
-    {id: 3, mac: '2f:22:33:44:53', sn: '21342134sdfg', ip: '192.168.0.3', gateway: '255.255.221.0'},
-    {id: 4, mac: '2f:22:33:44:57', sn: '234324fsdgs1234', ip: '192.168.0.4', gateway: '255.255.221.0'},
-    {id: 5, mac: '2f:22:33:44:53', sn: '12341234asdf', ip: '192.168.0.5', gateway: '255.255.221.0'},
-    {id: 6, mac: '2f:22:33:44:54', sn: '3129012asddkj', ip: '192.168.0.6', gateway: '255.255.221.0'},
-
-];
-
 
 type Props = {};
 type State = {};
@@ -36,6 +30,8 @@ type State = {};
 export const DataGridScreen = (props: Props) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+
+
     const [editRowsModel, setEditRowsModel] = React.useState({});
     useEffect(() => {
         initFetchData();
@@ -146,7 +142,7 @@ export const DataGridScreen = (props: Props) => {
         return (
             <View style={{margin: 10, marginLeft: 15,}}>
                 <Text>
-                    Project : 한화테크윈
+                    Project : &nbsp;&nbsp;&nbsp;한화 에어로 스페이스
                 </Text>
             </View>
         )
@@ -163,15 +159,49 @@ export const DataGridScreen = (props: Props) => {
                     {renderMembers()}
                     {renderVersion()}
                 </View>
+
+                {/*todo:***********************************/}
+                {/*todo: DataGrid                         */}
+                {/*todo:***********************************/}
                 <div style={{height: 400, width: '100%'}}>
                     <DataGrid
-                        rows={rows}
+                        /*onSelectionModelChange={(params) => {
+                            console.log("onSelectionModelChange===>", params.selectionModel);
+
+                        }}*/
+
+                        onRowSelected={(param) => {
+                            console.log("onRowSelected===>", param.api.current.getSelectedRows());
+                        }}
+
+                        rows={_.cloneDeep(gridRowStore.rows)}
                         columns={columns}
                         pageSize={5}
                         checkboxSelection
                         onEditRowModelChange={handleEditRowModelChange}
                     />
                 </div>
+                <View style={{flexDirection: 'row'}}>
+                    <WhiteSpace/>
+                    <Button
+                        startIcon={<Facebook/>}
+                        variant="contained" color={'primary'} onClick={() => {
+                        alert('sdflksdlfk')
+                    }}>get all row data</Button>
+                    <WhiteSpace/>
+                    <Button
+                        variant="contained" color={'secondary'}
+                        onClick={() => {
+                            console.log("gridRowStore.rows===>", _.cloneDeep(gridRowStore.rows));
+                        }}
+
+                    >Default</Button>
+                    <WhiteSpace/>
+                    <Button variant="contained">Default</Button>
+                    <WhiteSpace/>
+                    <Button variant="contained">Default</Button>
+                    <WhiteSpace/>
+                </View>
             </IonContent>
         </IonPage>
     ))
