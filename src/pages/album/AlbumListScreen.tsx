@@ -4,23 +4,32 @@ import {useEffect, useState} from 'react';
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {ActivityIndicator, Text, View} from "react-native";
-import albumService from "../../services/Album/AlbumService";
+import albumService from "../../services/album/AlbumService";
 import {TypeAlbum} from "../../types/Types";
 import _ from 'lodash'
-import globalStore from "../../stores/GlobalStore";
 import albumStore from "../../stores/AlbumStore";
 
 type Props = {};
 type State = {};
 
 
-export const AlbumListScreen2 = (props: Props) => {
+export const AlbumListScreen = (props: Props) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        initFetchData();
     }, [])
 
+    async function initFetchData() {
+        setLoading(true)
+        let albumList: any = await albumService.getAlbumList()
+        console.log("results-===>", albumList);
+        setTimeout(() => {
+            setLoading(false);
+            albumStore.setAlbumList(albumList)
+        }, 500)
+    }
 
     function renderHeader(title: string) {
         return (
@@ -37,13 +46,13 @@ export const AlbumListScreen2 = (props: Props) => {
 
     return useObserver(() => (
         <IonPage>
-            {renderHeader('Album List Screen')}
+            {renderHeader('album List Screen')}
             <IonContent>
                 <View>
                     {loading && <View style={{margin: 10,}}>
                         <ActivityIndicator size={'large'} color={'orange'}/>
                     </View>}
-                    {albumStore.albumList.map((item: TypeAlbum, index) => {
+                    {!loading && albumStore.albumList.map((item: TypeAlbum, index) => {
                         console.log("item===>", _.cloneDeep(item));
                         return (
                             <View key={index.toString()} style={{flexDirection: "row"}}>

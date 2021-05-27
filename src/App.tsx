@@ -1,10 +1,10 @@
 import React from 'react';
-import './assets/Styles/App.css';
+import './assets/styles/App.css';
 import {IonApp, IonRouterOutlet} from "@ionic/react";
 import {IonReactRouter} from "@ionic/react-router";
 import {Route,} from "react-router-dom";
-import {HomeScreen} from "./pages/Home/HomeScreen";
-import DetailScreen from "./pages/Detail/DetailScreen";
+import {HomeScreen} from "./pages/HomeScreen";
+import DetailScreen from "./pages/detail/DetailScreen";
 //todo: antd css
 import 'antd/dist/antd.css';
 import '@ionic/react/css/core.css';
@@ -19,13 +19,14 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import WriteScreen from "./pages/Write/WriteScreen";
-import DetailClassScreen from "./pages/Detail/DetailClassScreen";
-import {ListScreen} from "./pages/List/ListScreen";
-import TestScreen from "./pages/Test/TestScreen";
-import TestDetailScreen from "./pages/Test/TestDetailScreen";
-import {AlbumListScreen} from "./pages/Alibums/AlbumListScreen";
-import {AlbumListScreen2} from "./pages/Alibums/AlbumListScreen2";
+import WriteScreen from "./pages/WriteScreen";
+import DetailClassScreen from "./pages/detail/DetailClassScreen";
+import {ListScreen} from "./pages/ListScreen";
+import TestScreen from "./pages/TestScreen";
+import TestDetailScreen from "./pages/TestDetailScreen";
+import {AlbumListScreen} from "./pages/album/AlbumListScreen";
+import {AlbumListScreen2} from "./pages/album/AlbumListScreen2";
+import {InstallDetailScreen} from "./pages/installation/InstallDetailScreen";
 
 type Props = {};
 type State = {
@@ -56,6 +57,7 @@ export default class App extends React.Component<Props, State> {
                         <Route path="/TestDetailScreen" exact component={TestDetailScreen}/>
                         <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
                         <Route path="/AlbumListScreen2" exact component={AlbumListScreen2}/>
+                        <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
                     </IonRouterOutlet>
                 </IonReactRouter>
             </IonApp>

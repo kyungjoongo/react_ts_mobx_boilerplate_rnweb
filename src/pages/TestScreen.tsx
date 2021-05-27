@@ -1,10 +1,10 @@
 import {useObserver} from "mobx-react-lite";
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {Button, Text, View} from "react-native";
-import globalStore from "../../stores/GlobalStore";
+import globalStore from "../stores/GlobalStore";
 import React from "react";
-import testStore from "../../stores/TestStore";
-import {CommonHeader, WhiteSpace} from "../../components/Shared/SharedComponents";
+import testStore from "../stores/TestStore";
+import {CommonHeader, WhiteSpace} from "../components/shared/SharedComponents";
 
 
 export default function TestScreen(props: any) {
