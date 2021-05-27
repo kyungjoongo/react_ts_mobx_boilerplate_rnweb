@@ -152,7 +152,7 @@ export const DataGridScreen = (props: Props) => {
         return (
             <View style={{margin: 10, marginLeft: 15,}}>
                 <Text>
-                    Project : &nbsp;&nbsp;&nbsp;한화 에어로 스페이스
+                    Project : &nbsp;&nbsp;&nbsp;독수리 pjt
                 </Text>
             </View>
         )
