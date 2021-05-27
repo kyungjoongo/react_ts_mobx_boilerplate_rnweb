@@ -1,5 +1,7 @@
 // @flow
 import * as React from 'react';
+//@ts-ignore
+import InputMask from "react-input-mask";
 import {useEffect, useState} from 'react';
 import {Delete, Facebook} from '@material-ui/icons';
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
@@ -10,7 +12,7 @@ import {Avatar, Button, TextField} from "@material-ui/core";
 import {WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
-import {getFourthDigitNumber, getThreeDigitNumber} from "../../services/shared/SharedService";
+import {getFourthDigitNumber, getFirstThreeDigitNumber} from "../../services/shared/SharedService";
 
 
 const columns: GridColDef[] = [
@@ -186,27 +188,28 @@ export const DataGridScreen = (props: Props) => {
                         pageSize={5}
                         checkboxSelection
                         onEditRowModelChange={handleEditRowModelChange}
-
-
-                        /*onRowSelected={(param) => {
-                          let mapRows = param.api.current.getSelectedRows();
-                          let rowList: any = []
-                          mapRows.forEach((value: any, key: any) => {
-                              //console.log("temp===>", value);
-                              rowList.push(value)
-                          });
-                          //console.log("arrList===>", arrList);
-                          console.log("temp===>", rowList[0]);
-                          rowList[0].mac = '고경준 맥주소'
-                          gridRowStore.setRows(rowList)
-                      }}*/
                     />
                 </div>
                 <View style={{margin: 15, width: 200,}}>
+                </View>
+                <View style={{margin: 25}}>
+                    {/* <InputMask
+                        mask="999.999.999.999"
+                        value={'sdlfksldkf'}
+                        placeholder={'000.000.000.000'}
+
+
+                    >
+                        {() =>
+
+                        }
+                    </InputMask>*/}
+
                     <TextField
                         id="standard-basic"
                         label="ip_address"
-
+                        placeholder={'000.000.000.000'}
+                        style={{width: 130}}
                         onChange={(e) => {
                             console.log("onChange===>", e.target.value);
                             gridRowStore.setIpAddress(e.target.value)
@@ -245,7 +248,7 @@ export const DataGridScreen = (props: Props) => {
 
                                     let selectedRowsList = _.cloneDeep(gridRowStore.selectedRows);
 
-                                    let threeDigitNo = getThreeDigitNumber(gridRowStore.ipAddress)
+                                    let threeDigitNo = getFirstThreeDigitNumber(gridRowStore.ipAddress)
 
                                     let forthDigitNo = getFourthDigitNumber(gridRowStore.ipAddress)
 
@@ -262,8 +265,25 @@ export const DataGridScreen = (props: Props) => {
 
 
                     <WhiteSpace/>
+
+
+                    <WhiteSpace/>
                 </View>
             </IonContent>
         </IonPage>
     ))
 }
+
+
+/*onRowSelected={(param) => {
+                        let mapRows = param.api.current.getSelectedRows();
+                        let rowList: any = []
+                        mapRows.forEach((value: any, key: any) => {
+                            //console.log("temp===>", value);
+                            rowList.push(value)
+                        });
+                        //console.log("arrList===>", arrList);
+                        console.log("temp===>", rowList[0]);
+                        rowList[0].mac = '고경준 맥주소'
+                        gridRowStore.setRows(rowList)
+                    }}*/

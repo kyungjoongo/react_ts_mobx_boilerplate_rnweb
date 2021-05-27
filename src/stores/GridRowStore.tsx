@@ -15,7 +15,7 @@ class GridRowStore {
 
     @observable selectedRows = []
 
-    @observable ipAddress: string = '';
+    @observable ipAddress: string = '0.0.0.0';
 
 
     @action

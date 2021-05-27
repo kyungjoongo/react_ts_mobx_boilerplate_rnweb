@@ -19,19 +19,14 @@ export const getList = async () => {
     }
 }
 
-export function getThreeDigitNumber(pIpAddr: any) {
+export function getFirstThreeDigitNumber(pIpAddr: any) {
     let tempList = pIpAddr.split(".")
-    console.log("tempList===>", tempList);
-
     let threeDigitAddress = tempList[0] + "." + tempList[1] + "." + tempList[2]
-
     return threeDigitAddress;
 }
 
-
 export function getFourthDigitNumber(pIpAddr: any) {
     let tempList = pIpAddr.split(".")
-
     return tempList[3];
 }
 
