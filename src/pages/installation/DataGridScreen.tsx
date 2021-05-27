@@ -11,8 +11,8 @@ import {Avatar, Button, createStyles, makeStyles, Modal, Snackbar, TextField, Th
 import {WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
-import {getFirstThreeDigitNumber, getFourthDigitNumber} from "../../services/shared/SharedService";
-import {Alert, AlertTitle} from '@material-ui/lab';
+import {getFirstThreeDigitNumber, getFourthDigitNumber, getModalStyle, rand} from "../../services/shared/SharedService";
+import {Alert} from '@material-ui/lab';
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 120},
@@ -23,21 +23,6 @@ const columns: GridColDef[] = [
     {field: 'memo', headerName: 'memo', width: 150, editable: true},
 
 ];
-
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,22 +43,14 @@ type State = {};
 
 
 export const DataGridScreen = (props: Props) => {
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [selectRow, setSelectRow]: any = useState([]);
     const classes = useStyles();
     const [open, setOpen]: any = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false)
-
-
+    const [modalStyle] = React.useState(getModalStyle);
+    const inputRef = useRef(null);
     const [editRowsModel, setEditRowsModel] = React.useState({});
     useEffect(() => {
-        initFetchData();
     }, [])
-
-    async function initFetchData() {
-
-    }
 
     function renderHeader(title: string) {
         return (
@@ -94,7 +71,6 @@ export const DataGridScreen = (props: Props) => {
         },
         [],
     );
-
 
     function renderMembers() {
 
@@ -182,38 +158,24 @@ export const DataGridScreen = (props: Props) => {
         )
     }
 
-    // getModalStyle is not a pure function, we roll the style only on the first render
-    const [modalStyle] = React.useState(getModalStyle);
-
 
     function saveIpAddress() {
-
         let allRows = _.cloneDeep(gridRowStore.rows);
         console.log("allRows===>", allRows);
         console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
-
         let selectedRowsList = _.cloneDeep(gridRowStore.selectedRows);
-
         let threeDigitNo = getFirstThreeDigitNumber(gridRowStore.ipAddress)
-
         let forthDigitNo = getFourthDigitNumber(gridRowStore.ipAddress)
-
         selectedRowsList.map((item, index) => {
             allRows[parseInt(item) - 1].ip = threeDigitNo.toString() + '.' + (parseInt(forthDigitNo) + parseInt(index.toString())).toString()
         })
-
         gridRowStore.setRows(allRows)
         setOpen(false)
     }
 
-
-    const inputRef = useRef(null);
-
-    //inputRef.current.focus();
     function renderIpModal() {
         return (
             <Modal
-
                 open={open}
                 onClose={() => {
                     setOpen(false)
@@ -258,6 +220,53 @@ export const DataGridScreen = (props: Props) => {
         )
     }
 
+    function renderSnackBar() {
+        return (
+            <Snackbar open={snackbarOpen} autoHideDuration={6000}
+                      onClose={() => {
+                          setSnackbarOpen(false)
+                      }}
+            >
+                <Alert onClose={() => {
+                    setSnackbarOpen(false)
+                }} severity="warning">
+                    <strong>하나 이상의 로우를 선택하시요!!</strong>
+                </Alert>
+            </Snackbar>
+        )
+    }
+
+    function renderBottomBtns() {
+        return (
+            <View style={{flexDirection: 'row'}}>
+                <WhiteSpace/>
+                <Button
+                    variant={'outlined'} color={'primary'}
+                    onClick={() => {
+                        console.log("gridRowStore.rows===>", _.cloneDeep(gridRowStore.rows));
+                    }}
+
+                >Get all rows</Button>
+                <WhiteSpace/>
+                <Button color='secondary' variant='outlined' onClick={() => {
+
+                    if (gridRowStore.selectedRows.length === 0) {
+                        setSnackbarOpen(true)
+                    } else {
+                        setOpen(true)
+                        setTimeout(() => {
+                            // @ts-ignore
+                            inputRef.current.focus();
+                        }, 1000)
+                    }
+                }}>
+                    ip address multi 입력
+                </Button>
+
+            </View>
+        )
+    }
+
 
     return useObserver(() => (
         <IonPage>
@@ -269,26 +278,16 @@ export const DataGridScreen = (props: Props) => {
                     {renderMembers()}
                     {renderVersion()}
                 </View>
-
                 {/*todo:***********************************/}
                 {/*todo: DataGrid                         */}
                 {/*todo:***********************************/}
                 <div style={{height: 400, width: '100%'}}>
                     <DataGrid
                         onSelectionModelChange={(params) => {
-
-                            console.log("selectionModel===>", params.selectionModel);
-
                             let selectRows = params.selectionModel
-
                             gridRowStore.setSelectedRows(selectRows)
-
-
-                            console.log("checkedRowscheckedRowscheckedRows===>", _.cloneDeep(gridRowStore.selectedRows));
-
+                            console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
                         }}
-
-
                         rows={_.cloneDeep(gridRowStore.rows)}
                         columns={columns}
                         pageSize={5}
@@ -296,48 +295,9 @@ export const DataGridScreen = (props: Props) => {
                         onEditRowModelChange={handleEditRowModelChange}
                     />
                 </div>
-
-                <View style={{flexDirection: 'row'}}>
-                    <WhiteSpace/>
-                    <Button
-                        variant={'outlined'} color={'primary'}
-                        onClick={() => {
-                            console.log("gridRowStore.rows===>", _.cloneDeep(gridRowStore.rows));
-                        }}
-
-                    >Get all rows</Button>
-                    <WhiteSpace/>
-                    <Button color='secondary' variant='outlined' onClick={() => {
-
-                        if (gridRowStore.selectedRows.length === 0) {
-                            setSnackbarOpen(true)
-                        } else {
-                            setOpen(true)
-                            setTimeout(() => {
-                                // @ts-ignore
-                                inputRef.current.focus();
-                            }, 1000)
-                        }
-
-
-                    }}>
-                        ip address multi 입력
-                    </Button>
-                    {renderIpModal()}
-                    <WhiteSpace/>
-                    <Snackbar open={snackbarOpen} autoHideDuration={6000}
-                              onClose={() => {
-                                  setSnackbarOpen(false)
-                              }}
-                    >
-
-                        <Alert onClose={() => {
-                            setSnackbarOpen(false)
-                        }} severity="warning">
-                            <strong>하나 이상의 로우를 선택하시요!!</strong>
-                        </Alert>
-                    </Snackbar>
-                </View>
+                {renderBottomBtns()}
+                {renderIpModal()}
+                {renderSnackBar()}
             </IonContent>
         </IonPage>
     ))
