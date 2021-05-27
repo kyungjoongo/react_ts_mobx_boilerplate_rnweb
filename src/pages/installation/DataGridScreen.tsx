@@ -1,19 +1,18 @@
 // @flow
 import * as React from 'react';
+import {useEffect, useRef, useState} from 'react';
 //@ts-ignore
 import InputMask from "react-input-mask";
-import {useEffect, useState} from 'react';
-import {Delete, Facebook} from '@material-ui/icons';
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
-import {DataGrid, GridColDef, GridEditRowModelParams, GridValueGetterParams} from '@material-ui/data-grid';
-import {View, Text, Image} from "react-native";
-import {Avatar, Button, TextField} from "@material-ui/core";
+import {DataGrid, GridColDef, GridEditRowModelParams} from '@material-ui/data-grid';
+import {Text, View} from "react-native";
+import {Avatar, Button, createStyles, makeStyles, Modal, Snackbar, TextField, Theme} from "@material-ui/core";
 import {WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
-import {getFourthDigitNumber, getFirstThreeDigitNumber} from "../../services/shared/SharedService";
-
+import {getFirstThreeDigitNumber, getFourthDigitNumber} from "../../services/shared/SharedService";
+import {Alert, AlertTitle} from '@material-ui/lab';
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 120},
@@ -25,6 +24,34 @@ const columns: GridColDef[] = [
 
 ];
 
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        paper: {
+            position: 'absolute',
+            width: 400,
+            backgroundColor: theme.palette.background.paper,
+            border: '2px solid #000',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+        },
+    }),
+);
+
 
 type Props = {};
 type State = {};
@@ -34,6 +61,9 @@ export const DataGridScreen = (props: Props) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectRow, setSelectRow]: any = useState([]);
+    const classes = useStyles();
+    const [open, setOpen]: any = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false)
 
 
     const [editRowsModel, setEditRowsModel] = React.useState({});
@@ -152,6 +182,82 @@ export const DataGridScreen = (props: Props) => {
         )
     }
 
+    // getModalStyle is not a pure function, we roll the style only on the first render
+    const [modalStyle] = React.useState(getModalStyle);
+
+
+    function saveIpAddress() {
+
+        let allRows = _.cloneDeep(gridRowStore.rows);
+        console.log("allRows===>", allRows);
+        console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
+
+        let selectedRowsList = _.cloneDeep(gridRowStore.selectedRows);
+
+        let threeDigitNo = getFirstThreeDigitNumber(gridRowStore.ipAddress)
+
+        let forthDigitNo = getFourthDigitNumber(gridRowStore.ipAddress)
+
+        selectedRowsList.map((item, index) => {
+            allRows[parseInt(item) - 1].ip = threeDigitNo.toString() + '.' + (parseInt(forthDigitNo) + parseInt(index.toString())).toString()
+        })
+
+        gridRowStore.setRows(allRows)
+        setOpen(false)
+    }
+
+
+    const inputRef = useRef(null);
+
+    //inputRef.current.focus();
+    function renderIpModal() {
+        return (
+            <Modal
+
+                open={open}
+                onClose={() => {
+                    setOpen(false)
+                }}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                <div style={modalStyle} className={classes.paper}>
+                    <h2 id="simple-modal-title">IP Address를 입력..</h2>
+                    <View>
+                        <TextField
+                            ref={inputRef}
+                            autoFocus={true}
+                            id="standard-basic"
+                            placeholder={'000.000.000.000'}
+                            style={{width: 150}}
+                            onChange={(e) => {
+                                console.log("onChange===>", e.target.value);
+                                gridRowStore.setIpAddress(e.target.value)
+                            }}
+                        />
+                        <WhiteSpace/>
+
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <Button
+                                variant="contained" color={'secondary'}
+                                onClick={() => {
+                                    setOpen(false)
+                                }}
+                            >취소</Button>
+                            <WhiteSpace/>
+                            <WhiteSpace/>
+                            <WhiteSpace/>
+                            <Button
+                                variant="contained" color={'primary'}
+                                onClick={() => saveIpAddress()}
+                            >저장</Button>
+                        </View>
+                    </View>
+                </div>
+            </Modal>
+        )
+    }
+
 
     return useObserver(() => (
         <IonPage>
@@ -190,84 +296,47 @@ export const DataGridScreen = (props: Props) => {
                         onEditRowModelChange={handleEditRowModelChange}
                     />
                 </div>
-                <View style={{margin: 15, width: 200,}}>
-                </View>
-                <View style={{margin: 25}}>
-                    {/* <InputMask
-                        mask="999.999.999.999"
-                        value={'sdlfksldkf'}
-                        placeholder={'000.000.000.000'}
-
-
-                    >
-                        {() =>
-
-                        }
-                    </InputMask>*/}
-
-                    <TextField
-                        id="standard-basic"
-                        label="ip_address"
-                        placeholder={'000.000.000.000'}
-                        style={{width: 130}}
-                        onChange={(e) => {
-                            console.log("onChange===>", e.target.value);
-                            gridRowStore.setIpAddress(e.target.value)
-                        }}
-                    />
-                </View>
 
                 <View style={{flexDirection: 'row'}}>
                     <WhiteSpace/>
                     <Button
-                        startIcon={<Facebook/>}
-                        variant="contained" color={'primary'} onClick={() => {
-                        alert('sdflksdlfk')
-                    }}>get all row data</Button>
-                    <WhiteSpace/>
-                    <Button
-                        variant="contained" color={'secondary'}
+                        variant={'outlined'} color={'primary'}
                         onClick={() => {
                             console.log("gridRowStore.rows===>", _.cloneDeep(gridRowStore.rows));
                         }}
 
-                    >Default</Button>
+                    >Get all rows</Button>
                     <WhiteSpace/>
-                    <Button variant="contained">Default</Button>
+                    <Button color='secondary' variant='outlined' onClick={() => {
+
+                        if (gridRowStore.selectedRows.length === 0) {
+                            setSnackbarOpen(true)
+                        } else {
+                            setOpen(true)
+                            setTimeout(() => {
+                                // @ts-ignore
+                                inputRef.current.focus();
+                            }, 1000)
+                        }
+
+
+                    }}>
+                        ip address multi 입력
+                    </Button>
+                    {renderIpModal()}
                     <WhiteSpace/>
+                    <Snackbar open={snackbarOpen} autoHideDuration={6000}
+                              onClose={() => {
+                                  setSnackbarOpen(false)
+                              }}
+                    >
 
-
-                    <View>
-                        <Button variant="contained" color={'primary'}
-                                onClick={() => {
-                                    let allRows = _.cloneDeep(gridRowStore.rows);
-
-                                    console.log("allRows===>", allRows);
-
-                                    console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
-
-                                    let selectedRowsList = _.cloneDeep(gridRowStore.selectedRows);
-
-                                    let threeDigitNo = getFirstThreeDigitNumber(gridRowStore.ipAddress)
-
-                                    let forthDigitNo = getFourthDigitNumber(gridRowStore.ipAddress)
-
-                                    selectedRowsList.map((item, index) => {
-                                        allRows[parseInt(item) - 1].ip = threeDigitNo.toString() + '.' + (parseInt(forthDigitNo) + parseInt(index.toString())).toString()
-                                    })
-
-                                    gridRowStore.setRows(allRows)
-                                }}
-
-
-                        >set rows</Button>
-                    </View>
-
-
-                    <WhiteSpace/>
-
-
-                    <WhiteSpace/>
+                        <Alert onClose={() => {
+                            setSnackbarOpen(false)
+                        }} severity="warning">
+                            <strong>하나 이상의 로우를 선택하시요!!</strong>
+                        </Alert>
+                    </Snackbar>
                 </View>
             </IonContent>
         </IonPage>
