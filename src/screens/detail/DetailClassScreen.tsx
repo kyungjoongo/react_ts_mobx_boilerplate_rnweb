@@ -10,76 +10,77 @@ type State = {
     results: any,
 };
 
+class DetailClassScreen extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
 
-export default observer(
-    class DetailClassScreen extends React.Component<Props, State> {
-        constructor(props: Props) {
-            super(props);
-
-            this.state = {
-                loading: false,
-                results: [],
-            }
+        this.state = {
+            loading: false,
+            results: [],
         }
-
-        componentDidMount(): void {
-
-        }
-
-        renderHeader() {
-            return (
-                <IonHeader>
-                    <IonToolbar>
-                        <IonButtons slot="start">
-                            <IonBackButton defaultHref="/"/>
-                        </IonButtons>
-                        <IonTitle>DetailClassScreen</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-            )
-        }
-
-        render() {
-            return (
-                <IonPage>
-                    {this.renderHeader()}
-                    <IonContent>
-                        <View style={{
-                            justifyContent: "center",
-                            alignItems: 'center',
-                            marginTop: 30,
-
-                        }}>
-                            <Text style={{fontSize: 45}}>
-                                {globalStore.counter2}
-                            </Text>
-
-                        </View>
-                        <View style={{margin: 25}}>
-                            <Button
-                                title={'add QuaterCount2'}
-                                onPress={() => {
-                                    globalStore.incrementFourCount();
-                                }}
-                            />
-                        </View>
-
-                        <View style={{margin: 25}}>
-                            <Button
-                                color={'red'}
-                                title={'decrement counter2'}
-                                onPress={() => {
-
-                                    globalStore.decrementCounter2()
-                                }}
-                            />
-                        </View>
-                        <View style={{height: 80}}>
-                        </View>
-                    </IonContent>
-                </IonPage>
-            );
-        };
     }
-)
+
+    componentDidMount(): void {
+
+    }
+
+    renderHeader() {
+        return (
+            <IonHeader>
+                <IonToolbar>
+                    <IonButtons slot="start">
+                        <IonBackButton defaultHref="/"/>
+                    </IonButtons>
+                    <IonTitle>DetailClassScreen</IonTitle>
+                </IonToolbar>
+            </IonHeader>
+        )
+    }
+
+    render() {
+        return (
+            <IonPage>
+                {this.renderHeader()}
+                <IonContent>
+                    <View style={{
+                        justifyContent: "center",
+                        alignItems: 'center',
+                        marginTop: 30,
+
+                    }}>
+                        <Text style={{fontSize: 45}}>
+                            {globalStore.counter2}
+                        </Text>
+
+                    </View>
+                    <View style={{margin: 25}}>
+                        <Button
+                            title={'add QuaterCount2'}
+                            onPress={() => {
+                                globalStore.incrementFourCount();
+                            }}
+                        />
+                    </View>
+
+                    <View style={{margin: 25}}>
+                        <Button
+                            color={'red'}
+                            title={'decrement counter2'}
+                            onPress={() => {
+
+                                globalStore.decrementCounter2()
+                            }}
+                        />
+                    </View>
+                    <View style={{height: 80}}>
+                    </View>
+                </IonContent>
+            </IonPage>
+        );
+    };
+}
+
+
+export default observer(DetailClassScreen)
+
 

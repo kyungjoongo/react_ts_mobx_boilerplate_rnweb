@@ -38,7 +38,6 @@ class GridRowStore {
     //todo: ####################
     //todo: 프로젝트 rows properties
     //todo: ####################
-
     @observable projectRows = [
         {id: 1, project: '한화테크윈', date: '2021-05-28', members: ['고경준', '황진하', '천재', '키보드워리어']},
         {id: 2, project: '한화테크윈2', date: '2021-05-28', members: ['고경준2', '황진하', '천재', '데니스']},
