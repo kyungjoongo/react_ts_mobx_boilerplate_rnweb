@@ -302,14 +302,7 @@ export const InstallDetailScreen = (props: Props) => {
                 }}>
                     ip address multi 입력
                 </Button>
-
                 <WhiteSpace/>
-                <Button color='secondary' variant='outlined' onClick={() => {
-                    globalStore.setShowModal(true)
-                }}>
-                    showModal
-                </Button>
-
             </View>
         )
     }
