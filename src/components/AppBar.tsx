@@ -178,7 +178,7 @@ export default function PrimarySearchAppBar() {
                         <MenuIcon/>
                     </IconButton>*/}
                     <Typography className={classes.title} variant="h6" noWrap>
-                        WISENET
+                        이글넷
                     </Typography>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>

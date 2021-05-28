@@ -66,6 +66,7 @@ export default class App extends React.Component<Props, State> {
                         <IonRouterOutlet>
                             {/*<Route path="/" exact component={HomeScreen}/>*/}
                             <Route path="/" exact component={InstallMainScreen}/>
+                            <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
                             <Route path="/DetailScreen" exact component={DetailScreen}/>
                             <Route path="/DetailClassScreen" exact component={DetailClassScreen}/>
                             <Route path="/WriteScreen" exact component={WriteScreen}/>
@@ -74,7 +75,7 @@ export default class App extends React.Component<Props, State> {
                             <Route path="/TestDetailScreen" exact component={TestDetailScreen}/>
                             <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
                             <Route path="/AlbumListScreen2" exact component={AlbumListScreen2}/>
-                            <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
+
 
                         </IonRouterOutlet>
                     </IonReactRouter>
