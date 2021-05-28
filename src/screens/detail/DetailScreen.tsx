@@ -15,7 +15,7 @@ export default function DetailScreen(props: Props) {
     return useObserver(() => (
         (
             <IonPage>
-                <CommonHeader title={'detail Screen'}/>
+                <CommonHeader title={'detail Screen'} isRoot={false} />
                 <IonContent>
                     <View style={{height: 80}}>
                     </View>
@@ -30,7 +30,7 @@ export default function DetailScreen(props: Props) {
                     <View style={{justifyContent: 'center', alignItems: 'center',}}>
                         <IonButton color={'warning'} style={{color: 'orange', width: '100%'}} fill={'outline'}
                                    onClick={() => {
-                                       globalStore.incrementQuaterCount()
+                                       globalStore.incrementFourCount()
                                    }}>
                             increment count
                         </IonButton>
@@ -64,7 +64,7 @@ export default function DetailScreen(props: Props) {
 
                     <View style={{margin: 25,}}>
                         <Button title={'+2'} onPress={() => {
-                            globalStore.incrementQuaterCount();
+                            globalStore.incrementFourCount();
 
                         }}/>
                     </View>

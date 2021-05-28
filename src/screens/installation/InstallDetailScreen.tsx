@@ -13,6 +13,7 @@ import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
 import {getFirstThreeDigitNumber, getFourthDigitNumber, getModalStyle, rand} from "../../services/shared/SharedService";
 import {Alert} from '@material-ui/lab';
+import {History} from "history";
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 120},
@@ -38,7 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-type Props = {};
+type Props = {
+    history: any,
+};
 type State = {};
 
 
@@ -49,7 +52,13 @@ export const InstallDetailScreen = (props: Props) => {
     const [modalStyle] = React.useState(getModalStyle);
     const inputRef = useRef(null);
     const [editRowsModel, setEditRowsModel] = React.useState({});
+
+    const [title, setTitle]: any = useState(false);
+
+
     useEffect(() => {
+        let rowData = props.history.location.state.rowData;
+        setTitle(rowData.project)
     }, [])
 
     function renderHeader(title: string) {
@@ -284,6 +293,9 @@ export const InstallDetailScreen = (props: Props) => {
         <IonPage>
             {renderHeader('InstallDetailScreen')}
             <IonContent>
+                <View style={{margin: 10,}}>
+                    <Text style={{fontSize: 25, fontWeight: 'bold'}}>{title}</Text>
+                </View>
                 <View style={{width: '100%'}}>
                     {renderPjt()}
                     {renderOwner()}

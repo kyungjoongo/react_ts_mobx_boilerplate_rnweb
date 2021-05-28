@@ -23,7 +23,7 @@ class GlobalTestStore {
     }
 
     @action
-    incrementQuaterCount() {
+    incrementFourCount() {
         this.counter2 = this.counter2 + 4;
     }
 

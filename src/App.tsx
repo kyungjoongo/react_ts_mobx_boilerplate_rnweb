@@ -27,6 +27,7 @@ import TestDetailScreen from "./screens/TestDetailScreen";
 import {AlbumListScreen} from "./screens/album/AlbumListScreen";
 import {AlbumListScreen2} from "./screens/album/AlbumListScreen2";
 import {InstallDetailScreen} from "./screens/installation/InstallDetailScreen";
+import {InstallMainScreen} from "./screens/installation/InstallMainScreen";
 
 type Props = {};
 type State = {
@@ -58,6 +59,7 @@ export default class App extends React.Component<Props, State> {
                         <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
                         <Route path="/AlbumListScreen2" exact component={AlbumListScreen2}/>
                         <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
+                        <Route path="/InstallMainScreen" exact component={InstallMainScreen}/>
                     </IonRouterOutlet>
                 </IonReactRouter>
             </IonApp>

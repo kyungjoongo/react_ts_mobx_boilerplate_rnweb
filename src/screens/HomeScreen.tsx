@@ -58,8 +58,8 @@ export const HomeScreen = (props: Props) => {
                     </Text>
                 </View>
                 <View>
-                    <Button title={'plus_1'} onPress={() => {
-                        globalStore.incrementQuaterCount()
+                    <Button title={'increment 4'} onPress={() => {
+                        globalStore.incrementFourCount()
                     }}/>
                 </View>
 
@@ -107,7 +107,10 @@ export const HomeScreen = (props: Props) => {
                     props.history.push('/InstallDetailScreen')
                 }}/>
 
-
+                <WhiteSpace/>
+                <Button title={'push to Install__Mainl__Screen'} color={'navy'} onPress={() => {
+                    props.history.push('/InstallMainScreen')
+                }}/>
 
                 <WhiteSpace/>
                 <WhiteSpace/>

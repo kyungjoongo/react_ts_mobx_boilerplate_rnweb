@@ -59,7 +59,7 @@ export default observer(
                             <Button
                                 title={'add QuaterCount2'}
                                 onPress={() => {
-                                    globalStore.incrementQuaterCount();
+                                    globalStore.incrementFourCount();
                                 }}
                             />
                         </View>
