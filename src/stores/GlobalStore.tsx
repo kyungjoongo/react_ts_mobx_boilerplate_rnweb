@@ -5,6 +5,12 @@ class GlobalTestStore {
 
     @observable counter2 = 20;
 
+    @observable showModal = false;
+
+    setShowModal(bValue: boolean) {
+        this.showModal = bValue
+    }
+
 
     @action
     incrementTrippleCounter2() {

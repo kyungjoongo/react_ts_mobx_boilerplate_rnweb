@@ -28,11 +28,24 @@ import {AlbumListScreen} from "./screens/album/AlbumListScreen";
 import {AlbumListScreen2} from "./screens/album/AlbumListScreen2";
 import {InstallDetailScreen} from "./screens/installation/InstallDetailScreen";
 import {InstallMainScreen} from "./screens/installation/InstallMainScreen";
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import {grey, orange} from "@material-ui/core/colors";
 
 type Props = {};
 type State = {
     loading: boolean,
 };
+
+const outerTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: orange[700],
+        },
+        secondary: {
+            main: grey[900]
+        },
+    }
+});
 
 export default class App extends React.Component<Props, State> {
 
@@ -46,23 +59,28 @@ export default class App extends React.Component<Props, State> {
 
     render() {
         return (
-            <IonApp>
-                <IonReactRouter>
-                    <IonRouterOutlet>
-                        <Route path="/" exact component={HomeScreen}/>
-                        <Route path="/DetailScreen" exact component={DetailScreen}/>
-                        <Route path="/DetailClassScreen" exact component={DetailClassScreen}/>
-                        <Route path="/WriteScreen" exact component={WriteScreen}/>
-                        <Route path="/ListScreen" exact component={ListScreen}/>
-                        <Route path="/TestScreen" exact component={TestScreen}/>
-                        <Route path="/TestDetailScreen" exact component={TestDetailScreen}/>
-                        <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
-                        <Route path="/AlbumListScreen2" exact component={AlbumListScreen2}/>
-                        <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
-                        <Route path="/InstallMainScreen" exact component={InstallMainScreen}/>
-                    </IonRouterOutlet>
-                </IonReactRouter>
-            </IonApp>
+            <ThemeProvider theme={outerTheme}>
+                <IonApp>
+
+                    <IonReactRouter>
+                        <IonRouterOutlet>
+                            {/*<Route path="/" exact component={HomeScreen}/>*/}
+                            <Route path="/" exact component={InstallMainScreen}/>
+                            <Route path="/DetailScreen" exact component={DetailScreen}/>
+                            <Route path="/DetailClassScreen" exact component={DetailClassScreen}/>
+                            <Route path="/WriteScreen" exact component={WriteScreen}/>
+                            <Route path="/ListScreen" exact component={ListScreen}/>
+                            <Route path="/TestScreen" exact component={TestScreen}/>
+                            <Route path="/TestDetailScreen" exact component={TestDetailScreen}/>
+                            <Route path="/AlbumListScreen" exact component={AlbumListScreen}/>
+                            <Route path="/AlbumListScreen2" exact component={AlbumListScreen2}/>
+                            <Route path="/InstallDetailScreen" exact component={InstallDetailScreen}/>
+
+                        </IonRouterOutlet>
+                    </IonReactRouter>
+                </IonApp>
+            </ThemeProvider>
+
 
         );
     };

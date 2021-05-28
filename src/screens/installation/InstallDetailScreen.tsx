@@ -7,13 +7,27 @@ import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, Ion
 import {useObserver} from "mobx-react-lite";
 import {DataGrid, GridColDef, GridEditRowModelParams} from '@material-ui/data-grid';
 import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
-import {Avatar, Button, createStyles, makeStyles, Modal, Snackbar, TextField, Theme} from "@material-ui/core";
-import {WhiteSpace} from "../../components/shared/SharedComponents";
+import {
+    Avatar,
+    Button,
+    createStyles,
+    Dialog, DialogActions, DialogContent, DialogContentText,
+    DialogTitle,
+    makeStyles,
+    Modal,
+    Snackbar,
+    TextField,
+    Theme
+} from "@material-ui/core";
+import {AlertPopup, CommonHeader, WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
 import {getFirstThreeDigitNumber, getFourthDigitNumber, getModalStyle, rand} from "../../services/shared/SharedService";
 import {Alert} from '@material-ui/lab';
 import {History} from "history";
+import PrimarySearchAppBar from "../../components/AppBar";
+import FadeModal from "../../components/shared/FadeModal";
+import globalStore from "../../stores/GlobalStore";
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 120},
@@ -48,6 +62,11 @@ type State = {};
 export const InstallDetailScreen = (props: Props) => {
     const classes = useStyles();
     const [open, setOpen]: any = useState(false);
+
+    const [showModal, setShowModal]: any = useState(false);
+
+    const [modalTitle, setModalTitle]: any = useState('');
+
     const [snackbarOpen, setSnackbarOpen] = useState(false)
     const [modalStyle] = React.useState(getModalStyle);
     const inputRef = useRef(null);
@@ -284,46 +303,160 @@ export const InstallDetailScreen = (props: Props) => {
                     ip address multi 입력
                 </Button>
 
+                <WhiteSpace/>
+                <Button color='secondary' variant='outlined' onClick={() => {
+                    globalStore.setShowModal(true)
+                }}>
+                    showModal
+                </Button>
+
             </View>
         )
     }
 
+    function renderLeftMenu() {
+        return (
+            <View style={{flex: .15}}>
+                <View>
+                    <View style={{margin: 10,}}>
+                        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                            My Project
+                        </Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            밥먹기
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            운동하기
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            술먹기
+                        </Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
+    function renderLeftMenu2() {
+        return (
+            <View style={{flex: .15}}>
+                <View>
+                    <View style={{margin: 10,}}>
+                        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                            Shared Project
+                        </Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            판교역
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            알파돔
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            크래프톤 타워
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            크래프톤 타워
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            버거킹
+                        </Text>
+                        <WhiteSpace size={8}/>
+                        <Text>
+                            삼환 하이펙스
+                        </Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
 
     return useObserver(() => (
-        <IonPage>
-            {renderHeader('InstallDetailScreen')}
-            <IonContent>
-                <View style={{margin: 10,}}>
-                    <Text style={{fontSize: 25, fontWeight: 'bold'}}>{title}</Text>
-                </View>
-                <View style={{width: '100%'}}>
-                    {renderPjt()}
-                    {renderOwner()}
-                    {renderMembers()}
-                    {renderVersion()}
-                </View>
-                {/*todo:***********************************/}
-                {/*todo: DataGrid                         */}
-                {/*todo:***********************************/}
-                <div style={{height: 400, width: '100%'}}>
-                    <DataGrid
-                        onSelectionModelChange={(params) => {
-                            let selectRows = params.selectionModel
-                            gridRowStore.setSelectedRows(selectRows)
-                            console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
-                        }}
-                        rows={_.cloneDeep(gridRowStore.rows)}
-                        columns={columns}
-                        pageSize={5}
-                        checkboxSelection
-                        onEditRowModelChange={handleEditRowModelChange}
-                    />
-                </div>
-                {renderBottomBtns()}
-                {renderIpModal()}
-                {renderSnackBar()}
-            </IonContent>
-        </IonPage>
+        <React.Fragment>
+            <IonPage style={{marginTop: 70}}>
+                <CommonHeader color={'white'} title={' Installation Service > History'} isRoot={false}/>
+                <IonContent>
+                    <View style={{flexDirection: "row"}}>
+                        <View style={{flex: .15}}>
+                            {renderLeftMenu()}
+                            <WhiteSpace size={50}/>
+                            {renderLeftMenu2()}
+                        </View>
+                        <View style={{flex: .85}}>
+                            <View style={{margin: 10,}}>
+                                <Text style={{fontSize: 25, fontWeight: 'bold'}}>{title}</Text>
+                            </View>
+                            <View style={{width: '100%'}}>
+                                {renderPjt()}
+                                {renderOwner()}
+                                {renderMembers()}
+                                {renderVersion()}
+                            </View>
+                            {/*todo:***********************************/}
+                            {/*todo: DataGrid                         */}
+                            {/*todo:***********************************/}
+                            <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginHorizontal: 30,}}>
+                                <Button
+                                    color="primary" variant="contained" size={'small'}
+                                    onClick={() => {
+                                        setModalTitle('다운로드 하사겠어요')
+                                        globalStore.setShowModal(true)
+                                    }}
+                                >Download</Button>
+                                <WhiteSpace/>
+                                <Button
+                                    onClick={() => {
+                                        setModalTitle('Edit 하사겠어요')
+                                        globalStore.setShowModal(true)
+                                    }}
+                                    color="secondary" variant="contained" size={'small'}>Edit
+                                </Button>
+                                <WhiteSpace/>
+                                <Button
+                                    onClick={() => {
+                                        setModalTitle('Delete 하사겠어요')
+                                        globalStore.setShowModal(true)
+                                    }}
+
+                                    color="secondary" variant="contained" size={'small'}>Delete
+                                </Button>
+                            </View>
+                            <WhiteSpace/>
+                            <div style={{height: 400, width: '100%'}}>
+                                <DataGrid
+                                    onSelectionModelChange={(params) => {
+                                        let selectRows = params.selectionModel
+                                        gridRowStore.setSelectedRows(selectRows)
+                                        console.log("selectedRows===>", _.cloneDeep(gridRowStore.selectedRows));
+                                    }}
+                                    rows={_.cloneDeep(gridRowStore.rows)}
+                                    columns={columns}
+                                    pageSize={5}
+                                    checkboxSelection
+                                    onEditRowModelChange={handleEditRowModelChange}
+                                />
+                            </div>
+                            {renderBottomBtns()}
+                            {renderIpModal()}
+                            {renderSnackBar()}
+                        </View>
+                        <AlertPopup modal={showModal} title={modalTitle}/>
+                    </View>
+                </IonContent>
+            </IonPage>
+        </React.Fragment>
+
     ))
 }
 
