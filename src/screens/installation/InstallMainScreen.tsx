@@ -6,18 +6,15 @@ import InputMask from "react-input-mask";
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {DataGrid, GridColDef} from '@material-ui/data-grid';
-import {StyleSheet, Text, View, Image} from "react-native";
-import {Avatar, Button} from "@material-ui/core";
+import {StyleSheet, Text, View} from "react-native";
+import {Avatar} from "@material-ui/core";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
 import {getModalStyle} from "../../services/shared/SharedService";
 import {History} from 'history';
-import {CommonHeader, MainHeader, WhiteSpace} from "../../components/shared/SharedComponents";
-import PrimarySearchAppBar from "../../components/AppBar";
-
 
 const columns: GridColDef[] = [
-    {field: 'id', headerName: 'id', width: 120},
+    {field: 'no', headerName: 'no', width: 120},
     {field: 'project', headerName: 'project', width: 150, editable: true},
     {field: 'date', headerName: 'date', width: 150, editable: true},
     {
@@ -71,21 +68,34 @@ export const InstallMainScreen = (props: Props) => {
 
 
     return useObserver(() => (
-        <React.Fragment>
-            <PrimarySearchAppBar/>
-            <IonPage style={{marginTop: 70}}>
-                <CommonHeader color={'white'} title={' Installation Service'} isRoot={true}/>
-                <IonContent>
-                    <Text>
-                        sdflksdlkflsdkflks
-                    </Text>
-                    <img src="/images/a1.jpeg" style={{width: 250, height: 250,}}/>
-                    <img src="/images/a1.jpeg" style={{width: 250, height: 250,}}/>
+        <IonPage>
+            {renderHeader('Install 메인')}
+            <IonContent>
+                <View style={{margin: 10,}}>
+                    <Text style={{fontSize: 25, fontWeight: 'bold'}}>Installation Service</Text>
+                </View>
 
-                </IonContent>
-            </IonPage>
-        </React.Fragment>
+                <img src="/images/a1.jpeg" style={{width: 50, height: 50, borderRadius: 50,}}/>
+                <div style={{height: 400, width: '100%'}}>
+                    <DataGrid
+                        onSelectionModelChange={(params) => {
 
+                        }}
+                        rows={_.cloneDeep(gridRowStore.projectRows)}
+                        columns={columns}
+                        onRowClick={(param, event) => {
+
+                            props.history.push('/InstallDetailScreen', {
+                                rowData: param.row
+                            })
+                        }}
+                        pageSize={5}
+                        checkboxSelection
+                        //onEditRowModelChange={handleEditRowModelChange}
+                    />
+                </div>
+            </IonContent>
+        </IonPage>
     ))
 }
 

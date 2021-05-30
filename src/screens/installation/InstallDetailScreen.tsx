@@ -2,31 +2,16 @@
 import * as React from 'react';
 import {useEffect, useRef, useState} from 'react';
 //@ts-ignore
-import InputMask from "react-input-mask";
 import {IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from "@ionic/react";
 import {useObserver} from "mobx-react-lite";
 import {DataGrid, GridColDef, GridEditRowModelParams} from '@material-ui/data-grid';
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
-import {
-    Avatar,
-    Button,
-    createStyles,
-    Dialog, DialogActions, DialogContent, DialogContentText,
-    DialogTitle,
-    makeStyles,
-    Modal,
-    Snackbar,
-    TextField,
-    Theme
-} from "@material-ui/core";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Avatar, Button, createStyles, makeStyles, Modal, Snackbar, TextField, Theme} from "@material-ui/core";
 import {AlertPopup, CommonHeader, WhiteSpace} from "../../components/shared/SharedComponents";
 import gridRowStore from "../../stores/GridRowStore";
 import _ from 'lodash'
-import {getFirstThreeDigitNumber, getFourthDigitNumber, getModalStyle, rand} from "../../services/shared/SharedService";
+import {getFirstThreeDigitNumber, getFourthDigitNumber, getModalStyle} from "../../services/shared/SharedService";
 import {Alert} from '@material-ui/lab';
-import {History} from "history";
-import PrimarySearchAppBar from "../../components/AppBar";
-import FadeModal from "../../components/shared/FadeModal";
 import globalStore from "../../stores/GlobalStore";
 
 const columns: GridColDef[] = [
